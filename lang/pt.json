@@ -1,0 +1,14 @@
+{
+  "nav_about": "Sobre",
+  "nav_projects": "Projetos",
+  "nav_contact": "Contacto",
+  "hero_title": "Olá — Sou [O Teu Nome], Engenheiro Informático",
+  "hero_sub": "Desenvolvo software e sistemas embebidos. Explora os projetos abaixo.",
+  "btn_view_projects": "Ver projetos",
+  "btn_contact": "Contacto",
+  "about_title": "Sobre",
+  "about_text": "Concluí recentemente a Licenciatura em Engenharia Informática. O meu trabalho abrange desenvolvimento web, sistemas embebidos e projetos de dados. Valorizo código limpo, boa arquitectura e resultados práticos.",
+  "projects_title": "Projetos",
+  "contact_title": "Contacto",
+  "contact_text": "Email: your.email@example.com — LinkedIn: your-linkedin"
+}

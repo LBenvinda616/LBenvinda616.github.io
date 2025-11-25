@@ -1,0 +1,14 @@
+{
+  "nav_about": "About",
+  "nav_projects": "Projects",
+  "nav_contact": "Contact",
+  "hero_title": "Hi — I'm [Your Name], Computer Engineer",
+  "hero_sub": "I build software and embedded systems. Explore projects below.",
+  "btn_view_projects": "View projects",
+  "btn_contact": "Contact",
+  "about_title": "About",
+  "about_text": "I recently graduated in Computer Engineering. My work covers web development, embedded systems and data projects. I value clean code, good architecture and practical results.",
+  "projects_title": "Selected projects",
+  "contact_title": "Contact",
+  "contact_text": "Email: your.email@example.com — LinkedIn: your-linkedin"
+}
