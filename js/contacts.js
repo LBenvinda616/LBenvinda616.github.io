@@ -14,9 +14,7 @@
   function makeAnchor(contact){
     let href = '#';
     if(contact.type === 'email') href = 'mailto:' + contact.value;
-    else if(contact.type === 'phone') href = 'tel:' + contact.value;
-    else if(contact.type === 'linkedin') href = contact.value.startsWith('http') ? contact.value : 'https://linkedin.com/in/' + contact.value;
-    else if(contact.href) href = contact.href;
+    else href = contact.value;
     return href;
   }
 
