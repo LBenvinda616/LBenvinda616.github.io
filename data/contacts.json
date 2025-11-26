@@ -1,0 +1,17 @@
+[
+  {
+    "type": "email",
+    "value": "leonardobenvinda@hotmail.com",
+    "icon": "assets/images/contacts/email.svg"
+  },
+  {
+    "type": "linkedin",
+    "value": "https://www.linkedin.com/in/leonardo-benvinda-048066157/",
+    "icon": "assets/images/contacts/linkedin.svg"
+  },
+  {
+        "type": "github",
+        "value": "https://github.com/LBenvinda616",
+        "icon": "assets/images/contacts/github-mark.svg"
+    }
+]

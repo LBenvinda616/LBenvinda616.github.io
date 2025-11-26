@@ -1,0 +1,34 @@
+[
+  {
+    "id": "project_1",
+    "title_key": "project_1_title",
+    "summary_key": "project_1_desc",
+    "details_key": "project_1_details",
+    "category": "academic",
+    "images": ["assets/images/projects/project_1/1.jpg", "assets/images/projects/project_1/2.jpg"]
+  },
+  {
+    "id": "project_2",
+    "title_key": "project_2_title",
+    "summary_key": "project_2_desc",
+    "details_key": "project_2_details",
+    "category": "academic",
+    "images": ["assets/images/projects/project_2/1.jpg"]
+  },
+  {
+    "id": "project_3",
+    "title_key": "project_3_title",
+    "summary_key": "project_3_desc",
+    "details_key": "project_3_details",
+    "category": "professional",
+    "images": ["assets/images/projects/project_3/1.jpg", "assets/images/projects/project_3/2.jpg"]
+  },
+  {
+    "id": "project_4",
+    "title_key": "project_4_title",
+    "summary_key": "project_4_desc",
+    "details_key": "project_4_details",
+    "category": "personal",
+    "images": ["assets/images/projects/project_4/1.jpg"]
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "pos_1",
+    "title_key": "pos_1_title",
+    "company_key": "pos_1_company",
+    "years_key": "pos_1_years",
+    "desc_key": "pos_1_desc",
+    "image": "assets/images/positions/pos_1.svg"
+  },
+  {
+    "id": "pos_2",
+    "title_key": "pos_2_title",
+    "company_key": "pos_2_company",
+    "years_key": "pos_2_years",
+    "desc_key": "pos_2_desc",
+    "image": "assets/images/positions/pos_2.svg"
+  }
+]

@@ -6,15 +6,21 @@
   --muted: #9aa6b2;
   --accent: #00e5ff;
   --accent2: #ff007a;
+  --accent3: #7aff9e;
+  --warm: #ffd27a;
+  --gradient-angle: 110deg;
   --glass: rgba(255,255,255,0.03);
   --max-width: 1100px;
+  --container-padding: 2.5rem;
+  /* horizontal padding that scales with viewport but stays within sensible bounds */
+  --container-padding-inline: clamp(1rem, 4vw, 2.25rem);
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:linear-gradient(180deg,#071024 0%, #0a0f1f 100%);color:#e6f0f6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-.container{max-width:var(--max-width);margin:0 auto;padding:2rem}
+.container{max-width:var(--max-width);margin:0 auto;padding-top:var(--container-padding);padding-bottom:var(--container-padding);padding-left:calc(var(--container-padding-inline) + env(safe-area-inset-left));padding-right:calc(var(--container-padding-inline) + env(safe-area-inset-right))}
 
 /* Header */
 .site-header{position:sticky;top:0;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(7,16,36,0.6), rgba(7,16,36,0.3));border-bottom:1px solid rgba(255,255,255,0.03)}
@@ -24,14 +30,36 @@ body{margin:0;background:linear-gradient(180deg,#071024 0%, #0a0f1f 100%);color:
 .nav-links a{color:var(--muted);text-decoration:none;font-size:0.95rem}
 .nav-links a:hover{color:var(--accent)}
 
+/* language switch active state */
+.lang-switch button{background:transparent;border:0;color:var(--muted);font-weight:600;cursor:pointer}
+.lang-switch button.active{color:var(--accent);text-decoration:underline}
+
 /* Hero */
-.hero{position:relative;overflow:hidden;padding:6rem 0 4rem}
+.hero{position:relative;overflow:hidden;padding:6.5rem 0 4.5rem}
 .hero-content{position:relative;z-index:2}
 .hero h1{font-family:'JetBrains Mono', monospace;font-size:2.4rem;margin:0 0 1rem;color:#ffffff}
 .hero p{color:var(--muted);margin:0 0 1.2rem}
+.hero{background: linear-gradient(var(--gradient-angle), rgba(0,0,0,0.05), rgba(255,255,255,0.01));}
 .actions{margin-top:1rem}
 .btn{display:inline-block;padding:0.65rem 1rem;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041018;text-decoration:none;font-weight:600;margin-right:0.6rem}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+/* Animated accent underline for nav links */
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));bottom:-6px;transform-origin:left;transform:scaleX(0);transition:transform .22s ease}
+.nav-links a:hover::after,.nav-links a:focus::after{transform:scaleX(1)}
+
+/* Card hover lift and subtle color shift */
+.card{transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(0,0,0,0.6);border-color:rgba(255,255,255,0.06)}
+
+/* Hero background animated gradient */
+@keyframes heroShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero { background-image: linear-gradient(120deg, rgba(0,229,255,0.06), rgba(122,255,158,0.06), rgba(255,0,122,0.04)); background-size:300% 300%; animation: heroShift 18s ease-in-out infinite; }
+
+/* Contact icon subtle entrance animation */
+.contact .contact-icon{opacity:0;transform:translateY(6px);animation:iconIn .6s ease forwards}
+@keyframes iconIn{to{opacity:1;transform:none}}
 
 /* Hero image */
 .hero-image{position:absolute;right:3rem;bottom:1rem;width:220px;height:auto;opacity:0.95;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:3}
@@ -55,14 +83,139 @@ body{margin:0;background:linear-gradient(180deg,#071024 0%, #0a0f1f 100%);color:
 }
 
 /* Sections */
-.section{padding:3rem 0}
-h2{font-family:'JetBrains Mono', monospace;font-size:1.3rem;color:#dffaff;margin-bottom:1rem}
+/* Sections: use a flat surface; highlight items inside instead of a full section border */
+.section{
+  padding:3.5rem 0;
+  border-radius:12px;
+  background: linear-gradient(var(--surface), var(--surface));
+  transition: box-shadow .18s ease, transform .18s ease;
+  margin-bottom: 1.25rem;
+  position:relative; /* needed for the top-border pseudo element */
+}
+
+/* spacing between adjacent sections */
+.section + .section{margin-top:1.25rem}
+/* top border inside each section (aligned with container padding) */
+.section::before{content:'';position:absolute;left:calc(var(--container-padding-inline) + env(safe-area-inset-left));right:calc(var(--container-padding-inline) + env(safe-area-inset-right));top:0;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+/* remove the top border for sections inside the projects area (they use their own category separators) */
+#projects .section::before, .projects-category::before{display:none}
+/* ensure sections have horizontal breathing room even if content inside isn't wrapped in .container */
+.section{
+  padding-left: calc(var(--container-padding-inline) + env(safe-area-inset-left));
+  padding-right: calc(var(--container-padding-inline) + env(safe-area-inset-right));
+}
+h2{font-family:'JetBrains Mono', monospace;font-size:1.3rem;color:#dffaff;margin-bottom:1rem;position:relative;display:inline-block;padding-bottom:0.35rem}
+
+/* gradient underline for section titles */
+h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));transform-origin:left;transform:scaleX(1)}
 .skills{display:flex;gap:1rem;list-style:none;padding:0;margin-top:1rem;color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1.25rem;border-radius:10px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+
+/* projects: project cards get a colored gradient border to stand out */
+.project-card{border-radius:10px;border:2px solid transparent;background-image: linear-gradient(var(--card), var(--card)), linear-gradient(90deg,var(--accent),var(--accent2));background-origin: padding-box, border-box;background-clip: padding-box, border-box}
 
 /* Footer */
 .site-footer{padding:2rem;text-align:center;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(255,255,255,0.03)}
+
+/* Project modal styles */
+.project-modal{display:none}
+.project-modal.open{display:block}
+.project-modal .pm-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.7);z-index:80}
+.project-modal .pm-sheet{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:90%;max-width:1000px;background:var(--surface);border-radius:12px;padding:1rem;z-index:90;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.pm-close{position:absolute;right:12px;top:12px;background:transparent;border:0;color:var(--muted);font-size:1.1rem;cursor:pointer}
+.pm-body{display:flex;gap:1rem}
+.pm-left{flex:1}
+.pm-right{flex:1}
+.pm-left img{width:100%;height:auto;border-radius:8px;object-fit:cover;background:#071029}
+.pm-thumbs{display:flex;gap:0.5rem;margin-top:0.6rem}
+.pm-thumb{width:60px;height:40px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,0.04)}
+.pm-footer{display:flex;justify-content:space-between;margin-top:0.8rem}
+
+@media (max-width:900px){
+  .pm-body{flex-direction:column}
+}
+
+/* Projects category header */
+.projects-category h3{font-size:1.1rem;margin:0 0 0.6rem;color:#cfeff6;font-family:'JetBrains Mono', monospace;position:relative;display:inline-block;padding-bottom:0.5rem}
+.projects-category h3::after{content:'';position:absolute;left:0;bottom:0;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));width:100%}
+.projects-category .grid{margin-top:0.6rem}
+
+/* Education section */
+.education-list{display:flex;flex-direction:column;gap:1rem}
+.edu-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+.edu-meta{color:var(--muted);font-size:0.9rem;margin:0.4rem 0}
+.edu-item{display:flex;gap:1rem;align-items:flex-start}
+.edu-logo{width:120px;height:auto;border-radius:6px;flex:0 0 120px}
+.edu-right{flex:1}
+.edu-meta .sep{margin:0 0.5rem;color:rgba(255,255,255,0.06)}
+/* left gradient stripe for education and positions details */
+.edu-right, .pos-right{position:relative;padding-left:1rem}
+.edu-right::before, .pos-right::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:4px;background:linear-gradient(180deg,var(--accent),var(--accent3))}
+
+/* Previous positions */
+.positions-list{display:flex;flex-direction:column;gap:1rem}
+.pos-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+.pos-meta{color:var(--muted);font-size:0.9rem;margin:0.4rem 0}
+.pos-item{display:flex;gap:1rem;align-items:flex-start}
+.pos-logo{width:120px;height:auto;border-radius:6px;flex:0 0 120px}
+.pos-right{flex:1}
+
+/* Contacts (icon-only) */
+.contact{display:flex;gap:0.8rem;align-items:center}
+.contact .contact-item{display:flex;align-items:center}
+  .contact .contact-icon{display:inline-flex;width:56px;height:56px;align-items:center;justify-content:center;border-radius:10px;padding:10px;text-decoration:none;
+  /* stronger, more visible tinted background so icons are clearly visible on dark themes */
+  background: linear-gradient(90deg, rgb(0, 229, 255), rgb(255, 0, 123));
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+.contact .contact-icon img{width:60%;height:auto;object-fit:contain;display:block}
+.contact .contact-icon:hover,
+.contact .contact-icon:focus{
+  background: linear-gradient(90deg,var(--accent),var(--accent2));
+  color: #041018;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.55);
+}
+
+/* press feedback */
+.contact .contact-icon.contact-press{transform:scale(.96);box-shadow:0 6px 16px rgba(0,0,0,0.5)}
+.contact .contact-label{display:none;margin-left:0.5rem;color:var(--muted);font-size:0.95rem}
+
+/* Mobile: show label and increase touch targets */
+@media (max-width:600px){
+  .contact{flex-wrap:wrap;gap:0.6rem}
+  .contact .contact-item{gap:0.6rem}
+  .contact .contact-icon{width:72px;height:72px;padding:12px;border-radius:12px}
+  .contact .contact-label{display:inline-block}
+}
+
+/* Header/nav responsive adjustments */
+@media (max-width:800px){
+  .nav{flex-direction:column;align-items:stretch;gap:0.6rem;padding:0.75rem}
+  .brand{margin-bottom:0}
+  .nav-links{flex-direction:column;align-items:flex-start;gap:0.6rem}
+  .nav-links a{font-size:1.05rem}
+  .lang-switch{margin-top:0.2rem}
+}
+
+/* General mobile adjustments */
+@media (max-width:600px){
+  /* increase horizontal padding on small phones and respect safe-area insets (notches) */
+  .container{padding-top:1.25rem;padding-bottom:1.25rem;padding-left:calc(1.75rem + env(safe-area-inset-left));padding-right:calc(1.75rem + env(safe-area-inset-right))}
+  /* also force sections and hero to keep inset on very small screens */
+  .section, .hero{padding-left:calc(1.75rem + env(safe-area-inset-left));padding-right:calc(1.75rem + env(safe-area-inset-right))}
+  h2{font-size:1.05rem}
+  .hero{padding:4rem 0 2rem}
+  .btn{padding:0.6rem 0.9rem}
+  .card{padding:0.8rem}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  .edu-logo, .pos-logo{flex:0 0 88px;width:88px}
+}
+
+/* focus-visible for keyboard users on contact icons */
+.contact .contact-icon:focus{outline:2px solid var(--accent);outline-offset:3px}
 
 /* Animations */
 .fade-up{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}

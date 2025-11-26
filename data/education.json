@@ -1,0 +1,18 @@
+[
+  {
+    "id": "edu_1",
+    "degree_key": "edu_1_degree",
+    "institution_key": "edu_1_institution",
+    "years_key": "edu_1_years",
+    "desc_key": "edu_1_desc",
+    "image": "assets/images/education/edu_1.svg"
+  },
+  {
+    "id": "edu_2",
+    "degree_key": "edu_2_degree",
+    "institution_key": "edu_2_institution",
+    "years_key": "edu_2_years",
+    "desc_key": "edu_2_desc",
+    "image": "assets/images/education/edu_2.svg"
+  }
+]

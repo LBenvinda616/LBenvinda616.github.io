@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio — [Your Name]</title>
+  <title data-i18n="title">Portfolio — Leonardo Benvinda</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/lang.js" defer></script>
+  <script src="js/cv.js" defer></script>
+  <script src="js/projects.js" defer></script>
+  <script src="js/contacts.js" defer></script>
   <script src="js/animations.js" defer></script>
 </head>
 <body class="theme-light">
   <header class="site-header">
     <nav class="nav container">
-      <div class="brand">[Your Name]</div>
+      <div class="brand">Leonardo Benvinda</div>
       <ul class="nav-links">
         <li><a href="#about" data-i18n="nav_about">About</a></li>
         <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
@@ -28,14 +31,13 @@
     <section class="hero" id="home">
       <div class="circuit-bg" aria-hidden="true"></div>
       <div class="hero-content container">
-        <h1 data-i18n="hero_title">Hi — I'm [Your Name], Computer Engineer</h1>
-        <p data-i18n="hero_sub">I build software and embedded systems. Explore projects below.</p>
+  <h1 data-i18n="hero_title">Hi — I'm Leonardo Benvinda, Computer Engineer</h1>
+  <p data-i18n="hero_sub">I build software and embedded systems. Explore projects below.</p>
         <p class="actions">
           <a class="btn" href="#projects" data-i18n="btn_view_projects">View projects</a>
           <a class="btn ghost" href="#contact" data-i18n="btn_contact">Contact</a>
         </p>
       </div>
-      <img class='hero-image' src='/mnt/data/A_graphic_congratulatory_digital_image_features_a_.png' alt='congratulatory image'/>
     </section>
 
     <section id="about" class="container section">
@@ -49,36 +51,56 @@
       </ul>
     </section>
 
+    <section id="education" class="container section">
+      <h2 data-i18n="education_title">Education</h2>
+      <div id="education-container" class="education-list"></div>
+    </section>
+
+    <section id="positions" class="container section">
+      <h2 data-i18n="positions_title">Previous positions</h2>
+      <div id="positions-container" class="positions-list"></div>
+    </section>
+
     <section id="projects" class="container section">
       <h2 data-i18n="projects_title">Selected projects</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Tic Tac Toe (JavaFX)</h3>
-          <p>POO, JavaFX, PvE that never loses, user ranking system.</p>
-        </article>
-        <article class="card">
-          <h3>Sokoban (JavaFX)</h3>
-          <p>MVC, clean code, undo/redo, load & replay.</p>
-        </article>
-        <article class="card">
-          <h3>Gas Detector (Arduino)</h3>
-          <p>Arduino UNO R4 WiFi, IFTTT notifications, Arduino Cloud dashboard.</p>
-        </article>
-        <article class="card">
-          <h3>Rate-a-Beer (Laravel)</h3>
-          <p>REST API, MySQL, producers & enthusiasts, analytics.</p>
-        </article>
+      <div id="projects-container">
+        <!-- projects will be rendered here grouped by category -->
       </div>
     </section>
 
     <section id="contact" class="container section">
       <h2 data-i18n="contact_title">Contact</h2>
-      <p data-i18n="contact_text">Email: your.email@example.com — LinkedIn: your-linkedin</p>
+      <div id="contacts-container" class="contact" aria-label="contacts">
+        <!-- contacts will be rendered here by js/contacts.js (icons only) -->
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">© 2025 [Your Name]</div>
+    <div class="container" data-i18n="copyright">© 2025 Leonardo Benvinda</div>
   </footer>
+  
+  <!-- Project detail modal -->
+  <div id="project-modal" class="project-modal" aria-hidden="true">
+    <div class="pm-backdrop" data-action="close"></div>
+    <div class="pm-sheet" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+      <button class="pm-close" data-action="close" aria-label="Close">✕</button>
+      <div class="pm-body">
+        <div class="pm-left">
+          <img id="pm-main-image" src="" alt="" />
+          <div id="pm-thumbs" class="pm-thumbs"></div>
+        </div>
+        <div class="pm-right">
+          <h3 id="pm-title"></h3>
+          <p id="pm-summary" class="muted"></p>
+          <div id="pm-details"></div>
+        </div>
+      </div>
+      <div class="pm-footer">
+        <button class="pm-prev" aria-label="Previous">‹ Prev</button>
+        <button class="pm-next" aria-label="Next">Next ›</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
