@@ -36,12 +36,12 @@
       a.rel = 'noopener noreferrer';
       a.setAttribute('aria-label', c.type + (c.value ? (': ' + c.value) : ''));
 
-      const img = document.createElement('img');
-      img.src = c.icon;
-      img.alt = c.type;
-      img.width = 28;
-      img.height = 28;
-      a.appendChild(img);
+  // use a background-image span so icons (SVG or PNG) visually fill the same box
+  const graphic = document.createElement('span');
+  graphic.className = 'contact-graphic';
+  graphic.style.backgroundImage = `url(${c.icon})`;
+  graphic.setAttribute('aria-hidden','true');
+  a.appendChild(graphic);
 
       // small tooltip on hover using title — translated label could be added later
       a.title = c.value || c.type;
