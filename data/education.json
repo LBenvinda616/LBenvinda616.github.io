@@ -5,6 +5,7 @@
     "institution_key": "edu_1_institution",
     "years_key": "edu_1_years",
     "desc_key": "edu_1_desc",
+    "skills": ["Java", "JavaScript", "HTML", "CSS", "PHP", "Laravel", "C#", "Angular", "C", "Julia", "Python", "Object-oriented programming", "SQL", "Machine Learning"] ,
     "image": "assets/images/education/edu_1.svg"
   },
   {
@@ -13,6 +14,7 @@
     "institution_key": "edu_2_institution",
     "years_key": "edu_2_years",
     "desc_key": "edu_2_desc",
+    "skills": ["C", "VB.NET", "SQL", "Object-oriented programming"],
     "image": "assets/images/education/edu_2.svg"
   }
 ]

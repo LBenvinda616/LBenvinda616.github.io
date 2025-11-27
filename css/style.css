@@ -198,6 +198,11 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 /* force logos to the same size */
 .edu-logo, .pos-logo{width:120px;height:80px;object-fit:contain}
 
+/* Education skills chips */
+.edu-skills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;list-style:none;padding:0}
+.edu-skills li{background:rgba(255,255,255,0.02);color:var(--muted);padding:0.28rem 0.6rem;border-radius:999px;font-size:0.85rem;border:1px solid rgba(255,255,255,0.02)}
+
+
 /* Previous positions */
 .positions-list{display:flex;flex-direction:column;gap:1rem}
 .pos-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}

@@ -30,9 +30,23 @@
       meta.innerHTML = `<span>${I18n.t(item.institution_key)}</span><span class="sep">•</span><span>${I18n.t(item.years_key)}</span>`;
       const p = document.createElement('p');
       p.textContent = I18n.t(item.desc_key);
+      // render skills/technologies if present
+      let skillsEl = null;
+      if(Array.isArray(item.skills) && item.skills.length){
+        skillsEl = document.createElement('ul');
+        skillsEl.className = 'edu-skills skills';
+        item.skills.forEach(s => {
+          const li = document.createElement('li');
+          // allow either plain string or translation-key object { key: 'skill_key' }
+          if(typeof s === 'string') li.textContent = s;
+          else if(s && typeof s === 'object' && s.key) li.textContent = I18n.t(s.key);
+          skillsEl.appendChild(li);
+        });
+      }
       right.appendChild(h);
       right.appendChild(meta);
       right.appendChild(p);
+      if(skillsEl) right.appendChild(skillsEl);
       art.appendChild(img);
       art.appendChild(right);
       container.appendChild(art);
