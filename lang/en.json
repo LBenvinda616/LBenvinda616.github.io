@@ -59,6 +59,14 @@
   "project_4_details_2": "The core of the system is an Arduino UNO R4 Wifi, equipped with an MQ-2 gas sensor that, upon detecting potentially dangerous gas levels, sends notifications to a smartphone via the IFTTT (If This Then That (https://ifttt.com/)) service to alert users. The system also integrates an on-site alarm to immediately warn people nearby. For continuous monitoring, sensor data is sent to the Arduino Cloud, where it can be viewed in real-time through a dedicated dashboard.",
   "project_4_details_3": "This project was developed as part of the Applied Physics to Computing course in the 2023/2024 academic year.",
 
+  "project_5_title": "Sokoban",
+  "project_5_desc": "A version of the classic Sokoban game developed in Java, with a JavaFX graphical interface.",
+  "project_5_details": "The focus of this project was to develop clean and well-organized code, using the MVC (Model-View-Controller) design pattern to separate the game logic, user interface, and game flow control. The game includes features such as multiple levels, a scoring system, undo and redo functions for player moves, and the ability to save and load game progress, replaying the steps taken by the player. The graphical interface was developed using JavaFX, providing a pleasant and interactive visual experience for players.",
+  "project_5_details_2": "During development, I used more advanced Java concepts, such as records, enums, interfaces, inheritance, and polymorphism, to ensure the code was efficient and easy to maintain.",
+  "project_5_details_3": "With an emphasis on code quality, tests were also created for the main functionalities of the game, ensuring its robustness and reliability.",
+  "project_5_details_4": "This was a collaborative project, developed with a colleague, as part of the Object-Oriented Programming course in the 2022/2023 academic year.",
+
+
   "contact_title": "Contacts",
   "contact_text": "Email: your.email@example.com — LinkedIn: your-linkedin",
   "hero_image_alt": "imagem comemorativa",

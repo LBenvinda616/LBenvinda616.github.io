@@ -52,5 +52,19 @@
     ],
     "category": "academic",
     "skills": ["Arduino", "C/C++", "HTTP Requests", "IoT"]
+  },
+  {
+    "id": "project_5",
+    "title_key": "project_5_title",
+    "summary_key": "project_5_desc",
+    "details": [
+      { "type": "p", "text_key": "project_5_details" },
+      { "type": "p", "text_key": "project_5_details_2" },
+      { "type": "gallery", "images": ["assets/images/projects/project_5/level.png", "assets/images/projects/project_5/pontuacao.png", "assets/images/projects/project_5/options.png"], "alt": "Project 5 screenshots" },
+      { "type": "p", "text_key": "project_5_details_3" },
+      { "type": "p", "text_key": "project_5_details_4" }
+    ],
+    "category": "academic",
+    "skills": ["Arduino", "C/C++", "HTTP Requests", "IoT"]
   }
 ]

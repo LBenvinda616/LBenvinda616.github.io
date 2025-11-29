@@ -59,18 +59,25 @@
   "project_4_details_2": "O núcleo do sistema é um Arduino UNO R4 Wifi, equipado com um sensor de gás MQ-2 que, ao detectar níveis potêncialmente perigosos de gás, envia notificações para um smartphone através do serviço IFTTT (If This Then That (https://ifttt.com/)) para alertar os utilizadores. O sistema também integra um alarme on-site para avisar imediatamente as pessoas nas proximidades. Para monitorização contínua, os dados do sensor são enviados para o Arduino Cloud, onde podem ser visualizados em tempo real através de um dashboard dedicado.",
   "project_4_details_3":"Este projeto foi desenvolvido no âmbito da unidade curricular de Física Aplicada à Computação no ano letivo 2023/2024.",
 
-  "project_5_title": "Rate-a-Beer (Laravel)",
-  "project_5_desc": "API REST, MySQL, produtores & apreciadores, análises.",
-  "project_5_details": "Rate-a-Beer: aplicação Laravel com API REST, base de dados MySQL, autenticação e painéis analíticos. Suporta papéis de produtores e apreciadores, avaliações e reviews.",
+  "project_5_title": "Sokoban",
+  "project_5_desc": "Um versão do jogo clássico Sokoban desenvolvido em Java, com interface gráfica JavaFX",
+  "project_5_details": "O foco deste projeto era desenvolver código limpo e bem organizado, utilizando o padrão de design MVC (Model-View-Controller) para separar a lógica do jogo, a interface do utilizador e o controlo do fluxo do jogo. O jogo inclui funcionalidades como múltiplos níveis, sistema de pontuação, funções de undo e redo para os movimentos do jogador, e a capacidade de salvar e carregar o progresso do jogo, refazendo os passos dados pelo jogador. A interface gráfica foi desenvolvida utilizando JavaFX, proporcionando uma experiência visual agradável e interativa para os jogadores.",
+  "project_5_details_2":"Durante o desenvolvimento, recorri a conceitos mais avançados de Java, como records, enums, interfaces, herança e polimorfismo, para garantir que o código fosse eficiente e fácil de manter.",
+  "project_5_details_3":"Sendo o enfâse a qualidade do código, foram também criados testes para as principais funcionalidades do jogo, garantindo a sua robustez e fiabilidade.",
+  "project_5_details_4":"Este foi um projeto em duplamente, desenvolvido com um colega, no âmbito da unidade curricular de Programação Orientada a Objetos no ano letivo 2022/2023.",
+
   "project_6_title": "Rate-a-Beer (Laravel)",
   "project_6_desc": "API REST, MySQL, produtores & apreciadores, análises.",
   "project_6_details": "Rate-a-Beer: aplicação Laravel com API REST, base de dados MySQL, autenticação e painéis analíticos. Suporta papéis de produtores e apreciadores, avaliações e reviews.",
+
   "project_7_title": "Rate-a-Beer (Laravel)",
   "project_7_desc": "API REST, MySQL, produtores & apreciadores, análises.",
   "project_7_details": "Rate-a-Beer: aplicação Laravel com API REST, base de dados MySQL, autenticação e painéis analíticos. Suporta papéis de produtores e apreciadores, avaliações e reviews.",
+
   "project_8_title": "Rate-a-Beer (Laravel)",
   "project_8_desc": "API REST, MySQL, produtores & apreciadores, análises.",
   "project_8_details": "Rate-a-Beer: aplicação Laravel com API REST, base de dados MySQL, autenticação e painéis analíticos. Suporta papéis de produtores e apreciadores, avaliações e reviews.",
+
   "project_9_title": "Rate-a-Beer (Laravel)",
   "project_9_desc": "API REST, MySQL, produtores & apreciadores, análises.",
   "project_9_details": "Rate-a-Beer: aplicação Laravel com API REST, base de dados MySQL, autenticação e painéis analíticos. Suporta papéis de produtores e apreciadores, avaliações e reviews.",
