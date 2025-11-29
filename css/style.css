@@ -118,7 +118,46 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 /* projects: project cards get a colored gradient border to stand out */
 .project-card{border-radius:10px;border:2px solid transparent;background-image: linear-gradient(var(--card), var(--card)), linear-gradient(90deg,var(--accent),var(--accent2));background-origin: padding-box, border-box;background-clip: padding-box, border-box}
 /* force any image inside project cards to the same size */
-.project-card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.6rem}
+.project-card img{object-fit:cover;border-radius:8px;margin-bottom:0.6rem}
+
+/* project skills chips */
+.project-skills{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.6rem;list-style:none;padding:0}
+.project-skills li{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:var(--muted);padding:0.22rem 0.6rem;border-radius:999px;font-size:0.82rem;border:1px solid rgba(255,255,255,0.03)}
+
+/* Accordion layout for projects */
+.project-accordion{display:flex;flex-direction:column;gap:0.75rem;margin-top:0.8rem}
+.accordion-item{overflow:hidden}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.9rem 1rem;cursor:pointer}
+.accordion-header:focus{outline:2px solid rgba(0,229,255,0.12);outline-offset:3px}
+.accordion-title h3{margin:0;font-size:1.05rem}
+.accordion-title .summary-short{margin:0;margin-top:0.2rem;color:var(--muted);font-size:0.93rem}
+.accordion-toggle{background:transparent;border:0;color:var(--muted);font-size:1.25rem;padding:0.35rem 0.6rem;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;min-width:44px}
+.accordion-toggle .chev{display:inline-block;font-size:1.25rem;line-height:1;transform-origin:center;transition:transform .18s ease,color .18s ease}
+.accordion-toggle:hover{color:var(--accent)}
+.accordion-item.open .accordion-toggle .chev{transform:rotate(180deg);color:var(--accent2)}
+.accordion-item.open{box-shadow:0 18px 44px rgba(0,0,0,0.55);}
+.accordion-body{display:flex;gap:1rem;padding:0.8rem 1rem;border-top:1px solid rgba(255,255,255,0.02);align-items:flex-start}
+.acc-left{flex:0 0 320px;max-width:320px}
+.acc-main{width:100%;height:200px;object-fit:cover;border-radius:8px}
+.acc-thumbs{display:flex;gap:0.4rem;margin-top:0.5rem;flex-wrap:wrap}
+.acc-thumb{width:64px;height:48px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,0.04)}
+.acc-right{flex:1}
+.acc-details{color:#dfeff3;line-height:1.5;margin-top:0.35rem}
+
+/* When a project uses inline details (gallery/video) hide the left preview and expand the right column */
+.accordion-item.no-preview .acc-left{display:none}
+.accordion-item.no-preview .acc-right{flex:1 1 100%}
+
+/* header-specific skills display (compact) */
+.header-skills{margin-top:0.45rem;display:flex;flex-wrap:wrap;gap:0.35rem}
+.header-skills li{background:transparent;color:var(--muted);padding:0.16rem 0.5rem;border-radius:999px;font-size:0.8rem;border:1px solid rgba(255,255,255,0.02)}
+
+@media (max-width:900px){
+  .accordion-body{flex-direction:column}
+  .acc-left{flex:0 0 100%;max-width:100%}
+  .acc-main{height:220px}
+}
+
 
 /* Footer */
 .site-footer{padding:2rem;text-align:center;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(255,255,255,0.03)}
@@ -160,10 +199,38 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .pm-thumb:focus{outline:2px solid var(--accent);outline-offset:2px}
 .pm-thumb, #pm-main-image{display:block}
 #pm-main-image{width:100%;height:auto;max-height:56vh;object-fit:cover}
+ 
+/* Responsive video embed wrapper for project details */
+.video-wrap{position:relative;width:100%;padding-top:56.25%;margin:1rem 0;border-radius:8px;overflow:hidden;background:#000}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.detail-html img{max-width:100%;height:auto;display:block;border-radius:6px;margin:0.6rem 0}
+
+/* Gallery / slideshow styles */
+.slideshow-wrap{position:relative;display:block;border-radius:8px;overflow:hidden;background:#071029;border:1px solid rgba(255,255,255,0.03)}
+.lideshow-stage, .slideshow-stage{position:relative}
+.slideshow-stage{position:relative;padding-top:56.25%;/* 16:9 aspect */background:#071029}
+.slideshow-main{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-height:100%;width:auto;max-width:100%;display:block}
+.slideshow-prev,.slideshow-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:0;color:#fff;padding:0.5rem 0.8rem;border-radius:6px;cursor:pointer;font-size:1.4rem;line-height:1}
+.slideshow-prev{left:12px}
+.slideshow-next{right:12px}
+.slideshow-prev:hover,.slideshow-next:hover{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.slideshow-dots{display:flex;gap:0.4rem;justify-content:center;padding:0.5rem;background:transparent}
+.slideshow-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.06);border:0;cursor:pointer}
+.slideshow-dot.active{background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 6px 16px rgba(0,0,0,0.45)}
+
+@media (max-width:900px){
+  .slideshow-stage{padding-top:56.25%;}
+  .slideshow-prev,.slideshow-next{padding:0.45rem 0.6rem;font-size:1.1rem}
+}
 
 .pm-right h3{font-family:'JetBrains Mono', monospace;font-size:1.25rem;color:#e9fbff;margin:0 0 0.4rem}
 .pm-right .muted,#pm-summary{color:var(--muted);margin:0 0 0.6rem}
 .pm-right #pm-details{color:#dfeff3;line-height:1.5}
+
+/* Hide modal left preview when details include inline gallery/video (modal gets `no-preview` class) */
+#project-modal.no-preview .pm-left{display:none}
+#project-modal.no-preview .pm-right{flex:1 1 100%}
+#project-modal.no-preview .pm-thumbs{display:none}
 
 .pm-footer{display:flex;justify-content:space-between;margin-top:0.9rem;gap:0.6rem}
 .pm-footer button{appearance:none;border:0;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041018;padding:0.45rem 0.7rem;border-radius:8px;font-weight:700;cursor:pointer}
@@ -189,7 +256,8 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .edu-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
 .edu-meta{color:var(--muted);font-size:0.9rem;margin:0.4rem 0}
 .edu-item{display:flex;gap:1rem;align-items:flex-start}
-.edu-logo{width:120px;height:auto;border-radius:6px;flex:0 0 120px}
+.edu-logo{width:100%;height:auto;display:block}
+.edu-logo-wrap, .pos-logo-wrap{flex:0 0 120px;width:120px;border-radius:8px;overflow:hidden}
 .edu-right{flex:1}
 .edu-meta .sep{margin:0 0.5rem;color:rgba(255,255,255,0.06)}
 /* left gradient stripe for education and positions details */
@@ -197,10 +265,16 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .edu-right::before, .pos-right::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:4px;background:linear-gradient(180deg,var(--accent),var(--accent3))}
 /* force logos to the same size */
 .edu-logo, .pos-logo{width:120px;height:80px;object-fit:contain}
+/* ensure logos have rounded corners consistently */
+.edu-logo, .pos-logo{border-radius:8px;display:block}
 
 /* Education skills chips */
 .edu-skills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;list-style:none;padding:0}
 .edu-skills li{background:rgba(255,255,255,0.02);color:var(--muted);padding:0.28rem 0.6rem;border-radius:999px;font-size:0.85rem;border:1px solid rgba(255,255,255,0.02)}
+
+/* Position skills chips (similar to education but slightly more subtle) */
+.pos-skills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.6rem;list-style:none;padding:0}
+.pos-skills li{background:rgba(255,255,255,0.01);color:var(--muted);padding:0.22rem 0.55rem;border-radius:999px;font-size:0.83rem;border:1px solid rgba(255,255,255,0.02)}
 
 
 /* Previous positions */
@@ -208,7 +282,7 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .pos-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:1rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
 .pos-meta{color:var(--muted);font-size:0.9rem;margin:0.4rem 0}
 .pos-item{display:flex;gap:1rem;align-items:flex-start}
-.pos-logo{width:120px;height:auto;border-radius:6px;flex:0 0 120px}
+.pos-logo{width:100%;height:auto;display:block}
 .pos-right{flex:1}
 
 /* Contacts (icon-only) */

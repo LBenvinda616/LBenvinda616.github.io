@@ -3,32 +3,54 @@
     "id": "project_1",
     "title_key": "project_1_title",
     "summary_key": "project_1_desc",
-    "details_key": "project_1_details",
+    "details": [
+      { "type": "p", "text_key": "project_1_details" },
+      { "type": "p", "text_key": "project_1_details_2" },
+      { "type": "gallery", "images": ["assets/images/projects/project_1/1_pesquisa.jpeg", "assets/images/projects/project_1/1_anuncio.jpeg", "assets/images/projects/project_1/1_myads.jpeg"], "alt": "Project 1 screenshots" },
+      { "type": "p", "text_key": "project_1_details_3" },
+      { "type": "video", "provider": "youtube", "id": "WyxYtofzYzk", "title": "Demo SGAE" },
+      { "type": "p", "text_key": "project_1_details_4" }
+    ],
     "category": "academic",
-    "images": ["assets/images/projects/project_1/1.jpg", "assets/images/projects/project_1/2.jpg"]
+    "skills": ["PHP", "Laravel", "MVC", "MySQL", "Web Development", "HTML/CSS"]
   },
   {
     "id": "project_2",
     "title_key": "project_2_title",
     "summary_key": "project_2_desc",
-    "details_key": "project_2_details",
+        "details": [
+      { "type": "p", "text_key": "project_2_details" },
+      { "type": "p", "text_key": "project_2_details_2" },
+      { "type": "p", "text_key": "project_2_details_3" },
+      { "type": "gallery", "images": ["assets/images/projects/project_2/homepage.png", "assets/images/projects/project_2/homepage_phone_nav.png","assets/images/projects/project_2/beer_search.png", "assets/images/projects/project_2/beer.png", "assets/images/projects/project_2/mypage.png"], "alt": "Project 2 screenshots" }
+    ],
     "category": "academic",
-    "images": ["assets/images/projects/project_2/1.jpg"]
+    "skills": ["PHP", "Laravel", "React.js", "MySQL", "REST APIs", "Web Development"]
   },
   {
     "id": "project_3",
     "title_key": "project_3_title",
     "summary_key": "project_3_desc",
-    "details_key": "project_3_details",
-    "category": "professional",
-    "images": ["assets/images/projects/project_3/1.jpg", "assets/images/projects/project_3/2.jpg"]
+    "details": [
+      { "type": "p", "text_key": "project_3_details" },
+      { "type": "p", "text_key": "project_3_details_2" },
+      { "type": "gallery", "images": ["assets/images/projects/project_3/menu.png", "assets/images/projects/project_3/contacts.png", "assets/images/projects/project_3/add_contact.png", "assets/images/projects/project_3/view_contact.png", "assets/images/projects/project_3/sos.png", "assets/images/projects/project_3/messages.png", "assets/images/projects/project_3/configs.png"], "alt": "Project 3 screenshots" },
+      { "type": "p", "text_key": "project_3_details_3" }
+    ],
+    "category": "academic",
+    "skills": ["Android", "Kotlin", "UI/UX", "Accessibility", "Mobile Development"]
   },
   {
     "id": "project_4",
     "title_key": "project_4_title",
     "summary_key": "project_4_desc",
-    "details_key": "project_4_details",
-    "category": "personal",
-    "images": ["assets/images/projects/project_4/1.jpg"]
+    "details": [
+      { "type": "p", "text_key": "project_4_details" },
+      { "type": "p", "text_key": "project_4_details_2" },
+      { "type": "video", "provider": "youtube", "id": "cKY3LuxcpD0", "title": "Demo GASPAR" },
+      { "type": "p", "text_key": "project_4_details_3" }
+    ],
+    "category": "academic",
+    "skills": ["Arduino", "C/C++", "HTTP Requests", "IoT"]
   }
 ]

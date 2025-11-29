@@ -17,10 +17,13 @@
     arr.forEach(item => {
       const art = document.createElement('article');
       art.className = 'edu-item';
+      const imgWrap = document.createElement('div');
+      imgWrap.className = 'pos-logo-wrap';
       const img = document.createElement('img');
       img.src = item.image || '';
       img.alt = I18n.t(item.degree_key);
-      img.className = 'edu-logo';
+      img.className = 'pos-logo';
+      imgWrap.appendChild(img);
       const right = document.createElement('div');
       right.className = 'edu-right';
       const h = document.createElement('h3');
@@ -47,7 +50,7 @@
       right.appendChild(meta);
       right.appendChild(p);
       if(skillsEl) right.appendChild(skillsEl);
-      art.appendChild(img);
+      art.appendChild(imgWrap);
       art.appendChild(right);
       container.appendChild(art);
     });
@@ -60,10 +63,13 @@
     arr.forEach(item => {
       const art = document.createElement('article');
       art.className = 'pos-item';
+      const imgWrap = document.createElement('div');
+      imgWrap.className = 'pos-logo-wrap';
       const img = document.createElement('img');
       img.src = item.image || '';
       img.alt = I18n.t(item.title_key);
       img.className = 'pos-logo';
+      imgWrap.appendChild(img);
       const right = document.createElement('div');
       right.className = 'pos-right';
       const h = document.createElement('h3');
@@ -76,7 +82,19 @@
       right.appendChild(h);
       right.appendChild(meta);
       right.appendChild(p);
-      art.appendChild(img);
+      // render skills for positions if present
+      if(Array.isArray(item.skills) && item.skills.length){
+        const skillsEl = document.createElement('ul');
+        skillsEl.className = 'pos-skills skills';
+        item.skills.forEach(s => {
+          const li = document.createElement('li');
+          if(typeof s === 'string') li.textContent = s;
+          else if(s && typeof s === 'object' && s.key) li.textContent = I18n.t(s.key);
+          skillsEl.appendChild(li);
+        });
+        right.appendChild(skillsEl);
+      }
+      art.appendChild(imgWrap);
       art.appendChild(right);
       container.appendChild(art);
     });
