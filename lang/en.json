@@ -57,5 +57,10 @@
   "project_4_desc": "Gas detection system with IoT integration for remote monitoring.",
   "project_4_details": "GASPAR is a gas detection system developed with the goal of proving a concept rather than being a complex project. The aim was to try to create something useful using as many plug-and-play resources as possible, showing that it is possible to create practical solutions with a limited budget and accessible components.",
   "project_4_details_2": "The core of the system is an Arduino UNO R4 Wifi, equipped with an MQ-2 gas sensor that, upon detecting potentially dangerous gas levels, sends notifications to a smartphone via the IFTTT (If This Then That (https://ifttt.com/)) service to alert users. The system also integrates an on-site alarm to immediately warn people nearby. For continuous monitoring, sensor data is sent to the Arduino Cloud, where it can be viewed in real-time through a dedicated dashboard.",
-  "project_4_details_3": "This project was developed as part of the Applied Physics to Computing course in the 2023/2024 academic year."
+  "project_4_details_3": "This project was developed as part of the Applied Physics to Computing course in the 2023/2024 academic year.",
+
+  "contact_title": "Contacts",
+  "contact_text": "Email: your.email@example.com — LinkedIn: your-linkedin",
+  "hero_image_alt": "imagem comemorativa",
+  "copyright": "© 2025 Leonardo Benvinda"
 }
