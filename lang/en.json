@@ -66,6 +66,15 @@
   "project_5_details_3": "With an emphasis on code quality, tests were also created for the main functionalities of the game, ensuring its robustness and reliability.",
   "project_5_details_4": "This was a collaborative project, developed with a colleague, as part of the Object-Oriented Programming course in the 2022/2023 academic year.",
 
+    "project_6_title": "Football Match Outcome Prediction with Machine Learning",
+  "project_6_desc": "Training Machine Learning models to predict football match outcomes using only statistical data.",
+  "project_6_details": "This project explores the application of machine learning algorithms to predict football match outcomes (home win, draw, or away win), using the Orange software and a dataset extracted from Kaggle, based on Transfermarkt. Several models were trained, including Logistic Regression, Decision Tree, Neural Network, Random Forest, kNN (K-Nearest Neighbors), and Gradient Boosting.",
+  "project_6_details_2": "One of the main objectives of this project was to evaluate the performance of these models using only statistical data, without relying on contextual or subjective information, as is the case with betting companies, which include human prediction factors in their calculations. As predictive variables, the last 5 previous results of the teams were considered, both against each other and individually. Training data from 2013 to 2021 was used, testing was done with data from 2022 and 2023, and predictions were made using data from 2024.",
+  "project_6_details_3": "The mentioned models were evaluated based on Accuracy, Precision, Recall, and F1-Score metrics. The model that achieved the best performance was Gradient Boosting, obtaining the best values for all the mentioned indicators. The confusion matrix also reveals a considerable accuracy of 54.8% in predicting draws, which are traditionally harder to predict due to their unpredictable nature.",
+  "project_6_details_4": "For data cleaning and preparation, I used Python, while the machine learning models were trained and evaluated using the Orange software.",
+  "project_6_details_5": "In addition to training and evaluating the models, I wrote a detailed article that not only describes the development process but also provides a deeper analysis of the results obtained and their implications in the context of sports outcome prediction. This article can be accessed through the link below.",
+  "project_6_details_6": "This project was developed as part of the Information Systems course during the 2024/2025 academic year.",
+  "project_6_file_label": "Download the full article (PDF)",
 
   "contact_title": "Contacts",
   "contact_text": "Email: your.email@example.com — LinkedIn: your-linkedin",

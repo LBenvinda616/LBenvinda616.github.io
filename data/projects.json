@@ -28,6 +28,24 @@
     "skills": ["PHP", "Laravel", "React.js", "MySQL", "REST APIs", "Web Development"]
   },
   {
+    "id": "project_6",
+    "title_key": "project_6_title",
+    "summary_key": "project_6_desc",
+    "details": [
+      { "type": "p", "text_key": "project_6_details" },
+      { "type": "p", "text_key": "project_6_details_2" },
+      { "type": "p", "text_key": "project_6_details_3" },
+      { "type": "img", "src": "assets/images/projects/project_6/modelos.png", "alt": "table with all model's classifications" },
+      { "type": "img", "src": "assets/images/projects/project_6/matriz.png", "alt": "confusion matrix" },
+      { "type": "p", "text_key": "project_6_details_4" },
+      { "type": "p", "text_key": "project_6_details_5" },
+      { "type": "file", "src": "assets/files/Previsao_de_resultados_futebolisticos_com_machine_learning.pdf", "label_key": "project_6_file_label", "download": true },
+      { "type": "p", "text_key": "project_6_details_6" }
+    ],
+    "category": "academic",
+    "skills": ["Machine Learning", "Data Science", "Python", "Orange"]
+  },
+  {
     "id": "project_3",
     "title_key": "project_3_title",
     "summary_key": "project_3_desc",

@@ -313,6 +313,28 @@
       } else if(block.type === 'gallery'){
         // inline gallery/carousel block
         renderGalleryBlock(block, container, (block.alt || ''));
+      } else if(block.type === 'file'){
+        // render a file link as a button. block: { type: 'file', src: 'path/to.pdf', label_key_en: 'key.en', label_key_pt: 'key.pt', label?: 'Download' , download?: true }
+        const wrap = document.createElement('div'); wrap.className = 'detail-file';
+        const a = document.createElement('a');
+        a.className = 'file-btn btn';
+        a.href = block.src || block.url || '#';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        if (block.download) a.setAttribute('download', '');
+        // choose label based on i18n current language if specific keys provided
+        try{
+          let label = '';
+          if(block.label_key){ label = I18n.t(block.label_key); }
+          else if(block.label){ label = block.label; }
+          else {
+            // fallback: use filename
+            try{ label = (a.href && a.href.split('/').pop()) || 'Download'; }catch(e){ label = 'Download'; }
+          }
+          a.textContent = label;
+        }catch(e){ a.textContent = block.label || 'Download'; }
+        wrap.appendChild(a);
+        container.appendChild(wrap);
       } else if(block.type === 'img'){
         const figure = document.createElement('figure');
         const img = document.createElement('img');

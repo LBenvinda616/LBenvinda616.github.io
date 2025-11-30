@@ -66,9 +66,15 @@
   "project_5_details_3":"Sendo o enfâse a qualidade do código, foram também criados testes para as principais funcionalidades do jogo, garantindo a sua robustez e fiabilidade.",
   "project_5_details_4":"Este foi um projeto em duplamente, desenvolvido com um colega, no âmbito da unidade curricular de Programação Orientada a Objetos no ano letivo 2022/2023.",
 
-  "project_6_title": "Rate-a-Beer (Laravel)",
-  "project_6_desc": "API REST, MySQL, produtores & apreciadores, análises.",
-  "project_6_details": "Rate-a-Beer: aplicação Laravel com API REST, base de dados MySQL, autenticação e painéis analíticos. Suporta papéis de produtores e apreciadores, avaliações e reviews.",
+  "project_6_title": "Previsão de resultados de futebol com Machine Learning",
+  "project_6_desc": "Treino de modelos de Machine Learning para prever resultados de jogos de futebol, utilizando apenas dados estatísticos.",
+  "project_6_details": "Este projeto explora a aplicação de algoritmos de machine learning para prever resultados de jogos de futebol (vitória da casa, empate ou vitória visitante), recorrendo ao software Orange e a um conjunto de dados extraído do Kaggle, baseado no Transfermarkt. Foram treinados vários modelos, incluindo Regressão Logística, Árvore de Decisão, Rede Neural, Random Forest, kNN (K-Nearest Neighbors) e Gradient Boosting.",
+  "project_6_details_2": "Um dos principais objetivos deste projeto foi avaliar o desemprenho destes modelos utilizando apenas dados estatísticos, sem recorrer a informações contextuais ou subjetivas, como no caso de casas de aposta, qe incluem nos seus calculos fatores de palpite humano. Como variáveis preditoras, foram considerados os ultimos 5 resultados anteriores das equipas, tanto entre si, como individualmente. Como dados de treino foram utilizados dados entre 2013 e 2021, para teste os dados de 2022 e 2023, e utilizou-se para previsão os dados de 2024.",
+  "project_6_details_3": "Os modelos referidos foram avaliados com base nas métricas de Acurácia, Precisão, Recall e F1-Score. O modelo que obteve o melhor desempenho foi o Gradient Boosting, conseguindo os melhores valores de todos os indicadores mencionados. A matriz de confusão revela ainda uma precisão considerável de 54.8% na previsão de empates, que são tradicionalmente mais difíceis de prever devido à sua natureza imprevisível.",
+  "project_6_details_4": "Para a limpeza e preparação dos dados utilizei python, enquanto os modelos de machine learning foram treinados e avaliados utilizando o software Orange.",
+  "project_6_details_5": "Para além do treino e avaliação dos modelos, escrevi um artigo detalhado que descreve não só o processo de desenvolvimento, mas uma análise mais aprofundada aos resultados obtidos e às suas implicações no contexto da previsão de resultados desportivos. Esse artigo pode ser consultado através do link abaixo.",
+  "project_6_details_6": "Este projeto foi desenvolvido no âmbito da unidade curricular de Sistemas de Informação, durante o ano letivo de 2024/2025.",
+  "project_6_file_label": "Descarregar o artigo completo (PDF)",
 
   "project_7_title": "Rate-a-Beer (Laravel)",
   "project_7_desc": "API REST, MySQL, produtores & apreciadores, análises.",
