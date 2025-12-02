@@ -6,10 +6,13 @@
   "cat_academic": "Academic",
   "cat_professional": "Professional",
   "cat_personal": "Personal",
+  "cat_all": "All",
   "hero_title": "Leonardo Benvinda",
   "hero_sub": "Bachelor's degree in Computer Engineering.",
   "btn_view_projects": "Projects",
   "btn_contact": "Contacts and Social Media",
+  "btn_cv_en": "Download CV (EN)",
+  "btn_cv_pt": "Download CV (PT)",
   "about_title": "About",
   "about_text": "I have been passionate about technology for as long as I can remember. My interests are as varied as software development, IoT, Artificial Intelligence, systems administration, hardware repair and maintenance, among other areas. I enjoy practical challenges, but I also highly value the theory and planning behind a good project. I believe that technology should be used to improve people's lives, and I am always looking for new ways to learn and grow in this ever-evolving field. The different types of projects I have developed over the years reflect my curiosity for various areas. I recently completed my bachelor's degree in Computer Engineering, where I acquired and deepened knowledge in several areas, and I am now looking for my first professional experience in the field.",
   
@@ -32,6 +35,15 @@
   "pos_2_company": "Badaloca Cultural Association",
   "pos_2_years": "2020 — Present",
   "pos_2_desc": "Founding member and secretary of a local non-profit cultural association focused on promoting artistic and cultural events in the parish of Alvalade do Sado. Web development of the event website Alvalade Arise (www.alvaladearise.com).",
+  "pos_1_skill_csharp": "C#",
+  "pos_1_skill_vbnet": "VB.NET",
+  "pos_1_skill_sql": "SQL",
+  "pos_1_skill_hardware_troubleshooting": "Hardware troubleshooting",
+  "pos_2_skill_leadership": "Leadership",
+  "pos_2_skill_communication": "Communication",
+  "pos_2_skill_problem_solving": "Problem solving",
+  "pos_2_skill_team_work": "Team work",
+  "pos_2_skill_sense_of_responsibility": "Sense of responsibility",
   
   "projects_title": "Projects",
   "project_1_title": "SGAE - Student Accommodation Management System",
@@ -76,8 +88,27 @@
   "project_6_details_6": "This project was developed as part of the Information Systems course during the 2024/2025 academic year.",
   "project_6_file_label": "Download the full article (PDF)",
 
+  "project_7_title": "ARU - Unique Report Application",
+  "project_7_desc": "Data processing software for submitting the Unique Report to Social Security.",
+  "project_7_details": "While working at ETLA, I developed a desktop application in C# to automate the data processing required for submitting Annex C of the Unique Report to Social Security (https://help.factorialhr.com/pt_PT/formacao/como-preencher-o-anexo-c-do-relatorio-unico). A process that was previously done through multiple and complex Excel spreadsheets is now simplified with this application.",
+  "project_7_details_2": "This application was one of the most challenging in terms of integration with other systems. The data was extracted from various management systems into Excel sheets, so its format and structure were not consistent. ARU was developed with this particularity in mind, and it includes a 'header' reading functionality to attempt to automatically map the input data to the format expected by the application. When the headers are not recognized, the user can manually map the fields, ensuring the necessary flexibility to handle different data sources.",
+  "project_7_details_3": "Considering human error as an inevitable factor, the application also includes a duplicate record detection system, alerting the user to possible inconsistencies in the data before generating the final file. After processing and validating the data, the application generates a file in XML format, ready for submission to Social Security, significantly simplifying the process and reducing the risk of errors.",
+  "project_7_details_4": "A functionality was also implemented to automatically fill in some form data based on historical data, further reducing the time required to complete the report. This functionality was implemented using a version of the Levenshtein algorithm to compare the names of training sessions given to employees, identifying their topics within those available in the official Social Security table.",
+  "project_7_details_5": "For confidentiality reasons, I cannot share screenshots or specific details of the source code for this project.",
+  
+  "project_8_title": "Balançómetro - Inventory Software for Microenterprises",
+  "project_8_desc": "Simple inventory software developed in C#.",
+  "project_8_details": "Balançómetro is an inventory software I developed to address the needs of a family business that does not have organized accounting. Every year, to present the balance sheet to the Tax Authority, it was necessary to manually inventory all products in stock, which was time-consuming and prone to errors.",
+  "project_8_details_2": "To facilitate this process, I created this software in C# that allows importing the product list exported by the POS system in .xlsx format, entering the current stock quantities, updating prices, and then generating another Excel sheet ready to be delivered to the accounting department. The main advantage of this software is the implemented search functions, which allow quickly finding products by name, code, or price, making data updates easier.",
+  "project_8_details_3": "It may be seen as a simple project, but it had a significant impact on the efficiency of the annual inventory process for this microenterprise.",
+  
+  "project_9_title": "VMK - Virtual MIDI Keyboard",
+  "project_9_desc": "Software for mapping a QWERTY keyboard to send MIDI commands.",
+  "project_9_details": "This is a project born out of a personal need. As an amateur musician, I have been using sound modeling software for some time to avoid purchasing expensive hardware. Much of this software can be controlled via MIDI commands, usually issued by keyboards or other MIDI devices.",
+  "project_9_details_2": "That said, I always thought that using a specific keyboard just to control software running on a common computer was somewhat redundant. Couldn't I simply use a regular keyboard to send these MIDI commands? After some research, I didn't find many viable solutions, so I decided to develop my own software for this purpose. VMK is software developed in C# that allows me to map keys on a regular keyboard, define specific MIDI commands for each key, and thus control sound modeling software without the need for additional hardware.",
+  "project_9_details_3": "It is a personal project that is still in a very early stage, butin recent tests, it has already allowed sending basic MIDI commands. It does not yet have a visual interface or the ability to map keys, so both the commands and the mapped keys are still hardcoded. However, it is a project I intend to continue developing in my free time and, who knows, one day turn it into a useful tool for other amateur musicians like me.",
+
+
   "contact_title": "Contacts",
-  "contact_text": "Email: your.email@example.com — LinkedIn: your-linkedin",
-  "hero_image_alt": "imagem comemorativa",
   "copyright": "© 2025 Leonardo Benvinda"
 }

@@ -7,6 +7,7 @@
   );
 
   let projectsArray = [];
+  let _chevronCounter = 0;
   async function fetchProjects(){
     try{
       const arr = await (await fetch(dataPath)).json();
@@ -107,82 +108,156 @@
   function renderProjects(arr){
     const container = $('#projects-container');
     container.innerHTML = '';
-    const groups = { academic: [], professional: [], personal: [] };
-    arr.forEach(p=> groups[p.category = p.category || 'personal'].push(p));
-    const order = ['academic','professional','personal'];
-    order.forEach(cat=>{
+    // Group projects by category and render as accessible tabs (one tab per category)
+    // include an "all" group that contains every project
+    const groups = { all: [], academic: [], professional: [], personal: [] };
+    arr.forEach(p=>{
+      p.category = p.category || 'personal';
+      groups[p.category].push(p);
+      groups.all.push(p);
+    });
+    const order = ['all','academic','professional','personal'];
+
+    // tabs wrapper
+    const tabsWrap = document.createElement('div'); tabsWrap.className = 'project-tabs container section';
+    const tabList = document.createElement('div'); tabList.className = 'tab-list'; tabList.setAttribute('role','tablist');
+    const panelsWrap = document.createElement('div'); panelsWrap.className = 'tab-panels';
+
+    order.forEach((cat, idx)=>{
       const items = groups[cat];
-      if(!items || items.length===0) return;
-      const section = document.createElement('section');
-      section.className = 'projects-category container section';
-      const h = document.createElement('h3');
-      h.textContent = I18n.t('cat_'+cat);
-      section.appendChild(h);
+      // render tab button even if empty to keep consistent order, but hide empty panels
+      const tabBtn = document.createElement('button');
+      tabBtn.className = 'tab';
+      tabBtn.type = 'button';
+      tabBtn.setAttribute('role','tab');
+      tabBtn.setAttribute('aria-selected', idx===0 ? 'true' : 'false');
+      tabBtn.dataset.panel = `panel-${cat}`;
+      tabBtn.id = `tab-${cat}`;
+      tabBtn.textContent = I18n.t('cat_'+cat);
+      if(idx===0) tabBtn.classList.add('active');
+      tabList.appendChild(tabBtn);
 
-      const list = document.createElement('div');
-      list.className = 'project-accordion';
+      const panel = document.createElement('div'); panel.className = 'tab-panel'; panel.id = `panel-${cat}`; panel.setAttribute('role','tabpanel'); panel.setAttribute('aria-labelledby', tabBtn.id);
+      if(idx!==0) panel.hidden = true;
 
-      items.forEach(p=>{
-        const item = document.createElement('article');
-        item.className = 'accordion-item card project-card';
-        item.setAttribute('data-project-id', p.id);
+      // inside each panel render the project accordion list
+      const list = document.createElement('div'); list.className = 'project-accordion';
+      if(items && items.length){
+        items.forEach(p=>{
+          const item = document.createElement('article');
+          item.className = 'accordion-item card project-card';
+          item.setAttribute('data-project-id', p.id);
 
-        const header = document.createElement('header');
-        header.className = 'accordion-header';
-        header.tabIndex = 0;
-        const titleWrap = document.createElement('div');
-        titleWrap.className = 'accordion-title';
-        const t = document.createElement('h3'); t.textContent = I18n.t(p.title_key);
-        const short = document.createElement('p'); short.className = 'summary-short'; short.textContent = I18n.t(p.summary_key);
-        titleWrap.appendChild(t); titleWrap.appendChild(short);
-        // render skills in the header so they're visible when the accordion is closed
-        if(Array.isArray(p.skills) && p.skills.length){
-          const skh = document.createElement('ul'); skh.className = 'project-skills skills header-skills';
-          p.skills.forEach(s=>{ const li = document.createElement('li'); if(typeof s==='string') li.textContent = s; else if(s && s.key) li.textContent = I18n.t(s.key); skh.appendChild(li); });
-          titleWrap.appendChild(skh);
-        }
-        const toggle = document.createElement('button'); toggle.className = 'accordion-toggle'; toggle.setAttribute('aria-expanded','false'); toggle.innerHTML = '<span class="chev">▾</span>';
-        header.appendChild(titleWrap); header.appendChild(toggle);
+          const header = document.createElement('header');
+          header.className = 'accordion-header';
+          header.tabIndex = 0;
+          const titleWrap = document.createElement('div');
+          titleWrap.className = 'accordion-title';
+          const t = document.createElement('h3'); t.textContent = I18n.t(p.title_key);
+          const short = document.createElement('p'); short.className = 'summary-short'; short.textContent = I18n.t(p.summary_key);
+          titleWrap.appendChild(t); titleWrap.appendChild(short);
+          if(Array.isArray(p.skills) && p.skills.length){
+            const skh = document.createElement('ul'); skh.className = 'project-skills skills header-skills';
+            p.skills.forEach(s=>{ const li = document.createElement('li'); if(typeof s==='string') li.textContent = s; else if(s && s.key) li.textContent = I18n.t(s.key); skh.appendChild(li); });
+            titleWrap.appendChild(skh);
+          }
+          // make the whole header act as the toggle (accessible)
+          header.setAttribute('role', 'button');
+          header.setAttribute('aria-expanded', 'false');
+          header.appendChild(titleWrap);
+          // add a desktop-only chevron button to indicate the item can be opened
+          try{
+            const openLabel = (window.I18n && typeof I18n.t === 'function') ? I18n.t('btn_open') : 'Open';
+            const openBtn = document.createElement('button');
+            openBtn.type = 'button';
+            openBtn.className = 'accordion-open-btn';
+            openBtn.setAttribute('aria-label', openLabel || 'Open project');
+            // inline chevron-down SVG with its own gradient defs so the arrow can use the site gradient
+            const gid = 'chev-grad-' + (++_chevronCounter);
+            openBtn.innerHTML = `
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <defs>
+                  <linearGradient id="${gid}" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" style="stop-color:var(--accent3)" />
+                    <stop offset="0.5" style="stop-color:var(--accent2)" />
+                    <stop offset="1" style="stop-color:var(--accent)" />
+                  </linearGradient>
+                </defs>
+                <!-- stroked chevron for a bolder look; gradient applied to stroke -->
+                <path d="M6 9l6 6 6-6" stroke="url(#${gid})" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              </svg>`;
+            // clicking the small button should toggle the header without propagating twice
+            openBtn.addEventListener('click', (ev)=>{ ev.stopPropagation(); header.click(); });
+            header.appendChild(openBtn);
+          }catch(e){ /* ignore if I18n not ready */ }
 
-        const body = document.createElement('div'); body.className = 'accordion-body'; body.hidden = true; body.style.display = 'none';
+          const body = document.createElement('div'); body.className = 'accordion-body'; body.hidden = true; body.style.display = 'none';
 
-        // Accordion body: only a right/details column. Left preview removed — details array fully drives content placement.
-        const right = document.createElement('div'); right.className = 'acc-right';
+          const right = document.createElement('div'); right.className = 'acc-right';
+          const detailsEl = document.createElement('div'); detailsEl.className = 'acc-details';
+          renderDetailBlocks(p.details || I18n.t(p.details_key), detailsEl);
+          right.appendChild(detailsEl);
 
-        // right: details only (do not duplicate the summary here)
-        const detailsEl = document.createElement('div'); detailsEl.className = 'acc-details';
-        // render rich detail blocks (in order) — this is the single source of content for the body
-        renderDetailBlocks(p.details || I18n.t(p.details_key), detailsEl);
-        right.appendChild(detailsEl);
+          body.appendChild(right);
+          item.appendChild(header); item.appendChild(body);
+          list.appendChild(item);
+        });
+      }
 
-        // body.appendChild(right);
-        // body.appendChild(left); 
-        body.appendChild(right);
-        item.appendChild(header); item.appendChild(body);
-        list.appendChild(item);
+      panel.appendChild(list);
+      panelsWrap.appendChild(panel);
+    });
+
+    tabsWrap.appendChild(tabList);
+    tabsWrap.appendChild(panelsWrap);
+    container.appendChild(tabsWrap);
+
+    // tab switching - attach a click handler to each tab button for reliability
+    const tabButtons = Array.from(tabList.querySelectorAll('.tab'));
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        const active = tabList.querySelector('.tab.active'); if(active) { active.classList.remove('active'); active.setAttribute('aria-selected','false'); }
+        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+        panelsWrap.querySelectorAll('.tab-panel').forEach(p=> p.hidden = p.id !== btn.dataset.panel);
       });
-
-      section.appendChild(list);
-      container.appendChild(section);
+      // keyboard navigation between tabs
+      btn.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+          e.preventDefault();
+          const idx = tabButtons.indexOf(btn);
+          const next = tabButtons[(idx + (e.key === 'ArrowRight' ? 1 : tabButtons.length-1)) % tabButtons.length];
+          if(next){ next.focus(); next.click(); }
+        }
+      });
     });
 
     // accordion behavior: toggle on click/keyboard, single-open per accordion
     $all('.accordion-header').forEach(hdr=>{
       const item = hdr.closest('.accordion-item');
+      // support older markup that may contain a .accordion-toggle, but prefer header attributes
       const btn = hdr.querySelector('.accordion-toggle');
       function setOpen(open){
         const body = item.querySelector('.accordion-body');
-        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        const isOpen = (btn ? btn.getAttribute('aria-expanded') : hdr.getAttribute('aria-expanded')) === 'true';
         const shouldOpen = open === undefined ? !isOpen : !!open;
         if(shouldOpen){
           // close siblings
           const parent = item.parentNode;
-          parent.querySelectorAll('.accordion-item.open').forEach(sib=>{ if(sib!==item){ sib.classList.remove('open'); sib.querySelector('.accordion-body').hidden = true; sib.querySelector('.accordion-toggle').setAttribute('aria-expanded','false'); }});
-          item.classList.add('open'); body.hidden = false; body.style.display = 'flex'; btn.setAttribute('aria-expanded','true');
+          parent.querySelectorAll('.accordion-item.open').forEach(sib=>{
+            if(sib!==item){
+              sib.classList.remove('open');
+              const sibBody = sib.querySelector('.accordion-body'); if(sibBody){ sibBody.hidden = true; sibBody.style.display = 'none'; }
+              const sibHdr = sib.querySelector('.accordion-header'); if(sibHdr){ sibHdr.setAttribute('aria-expanded','false'); }
+              const sibBtn = sib.querySelector('.accordion-toggle'); if(sibBtn) sibBtn.setAttribute('aria-expanded','false');
+            }
+          });
+          item.classList.add('open'); body.hidden = false; body.style.display = 'flex';
+          hdr.setAttribute('aria-expanded','true'); if(btn) btn.setAttribute('aria-expanded','true');
           // update hash for shareability
           const id = item.getAttribute('data-project-id'); history.replaceState(null,'','#project/'+id);
         } else {
-          item.classList.remove('open'); body.hidden = true; body.style.display = 'none'; btn.setAttribute('aria-expanded','false');
+          item.classList.remove('open'); body.hidden = true; body.style.display = 'none';
+          hdr.setAttribute('aria-expanded','false'); if(btn) btn.setAttribute('aria-expanded','false');
           // remove hash if it points to this project
           const cur = (location.hash||'').replace('#project/',''); if(cur === item.getAttribute('data-project-id')) history.replaceState(null,'',location.pathname+location.search);
         }
@@ -340,6 +415,7 @@
         const img = document.createElement('img');
         img.src = block.src;
         img.alt = block.alt || '';
+        img.className = 'project-img';
         figure.appendChild(img);
         if(block.caption){
           const fc = document.createElement('figcaption');
@@ -365,6 +441,8 @@
     }).filter(Boolean);
     const len = imgs.length;
     const wrap = document.createElement('div'); wrap.className = 'slideshow-wrap';
+    // expose normalized image srcs for lightbox handling
+    try{ wrap.dataset.images = JSON.stringify(imgs.map(i=>i.src)); }catch(e){ wrap.dataset.images = '[]'; }
 
     const stage = document.createElement('div'); stage.className = 'slideshow-stage';
     const main = document.createElement('img'); main.className = 'slideshow-main';
@@ -414,3 +492,76 @@
     update();
     container.appendChild(wrap);
   }
+
+  // Lightbox handling for project images and galleries (delegated)
+  (function(){
+    const projectsContainer = document.getElementById('projects-container');
+    if(!projectsContainer) return;
+
+    // create lightbox element once
+    let lb = null;
+    function createLightbox(){
+      lb = document.createElement('div'); lb.className = 'image-lightbox'; lb.innerHTML = `
+        <div class="lb-backdrop" tabindex="-1"></div>
+        <div class="lb-inner" role="dialog" aria-modal="true">
+          <button class="lb-close" aria-label="Close">×</button>
+          <img class="lb-img" src="" alt="" />
+          <div class="lb-caption"></div>
+          <button class="lb-prev" aria-label="Previous">‹</button>
+          <button class="lb-next" aria-label="Next">›</button>
+        </div>`;
+      document.body.appendChild(lb);
+      lb.querySelector('.lb-close').addEventListener('click', close);
+      lb.querySelector('.lb-backdrop').addEventListener('click', close);
+      lb.querySelector('.lb-prev').addEventListener('click', ()=> show(currentIndex-1));
+      lb.querySelector('.lb-next').addEventListener('click', ()=> show(currentIndex+1));
+      document.addEventListener('keydown', onKey);
+    }
+
+    let currentList = [];
+    let currentIndex = 0;
+    function openList(list, idx){
+      if(!lb) createLightbox();
+      currentList = Array.isArray(list) ? list : [];
+      currentIndex = Math.max(0, Math.min((idx|0), currentList.length-1));
+      lb.classList.add('open');
+      updateLB();
+    }
+    function updateLB(){
+      const imgEl = lb.querySelector('.lb-img');
+      const cap = lb.querySelector('.lb-caption');
+      if(!currentList.length){ imgEl.src = ''; cap.textContent = ''; return; }
+      imgEl.src = currentList[currentIndex] || '';
+      imgEl.alt = '';
+      cap.textContent = `${currentIndex+1} / ${currentList.length}`;
+      // show/hide nav
+      lb.querySelector('.lb-prev').style.display = currentList.length>1 ? 'block' : 'none';
+      lb.querySelector('.lb-next').style.display = currentList.length>1 ? 'block' : 'none';
+    }
+    function show(i){ if(!currentList.length) return; currentIndex = (i + currentList.length) % currentList.length; updateLB(); }
+    function close(){ if(!lb) return; lb.classList.remove('open'); }
+    function onKey(e){ if(!lb || !lb.classList.contains('open')) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft') show(currentIndex-1); if(e.key==='ArrowRight') show(currentIndex+1); }
+
+    // delegate clicks inside projects container
+    projectsContainer.addEventListener('click', (ev)=>{
+      const img = ev.target.closest && ev.target.closest('img');
+      if(!img) return;
+      // prefer gallery dataset on ancestor slideshow-wrap
+      const wrap = img.closest && img.closest('.slideshow-wrap');
+      if(wrap && wrap.dataset && wrap.dataset.images){
+        try{
+          const list = JSON.parse(wrap.dataset.images || '[]');
+          // determine index by matching src
+          const src = img.src || img.getAttribute('src');
+          let idx = list.indexOf(src);
+          if(idx === -1) idx = 0;
+          openList(list, idx);
+          return;
+        }catch(e){ /* ignore */ }
+      }
+
+      // otherwise open single image (could be inside figure)
+      const src = img.src || img.getAttribute('src');
+      if(src){ openList([src], 0); }
+    });
+  })();

@@ -14,7 +14,9 @@
 <body class="theme-light">
   <header class="site-header">
     <nav class="nav container">
-      <div class="brand">Leonardo Benvinda</div>
+      <div class="brand">
+        <span class="brand-name">Leonardo Benvinda</span>
+      </div>
       <ul class="nav-links">
         <li><a href="#about" data-i18n="nav_about">About</a></li>
         <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
@@ -31,12 +33,21 @@
     <section class="hero" id="home">
       <div class="circuit-bg" aria-hidden="true"></div>
       <div class="hero-content container">
-  <h1 data-i18n="hero_title">Hi — I'm Leonardo Benvinda, Computer Engineer</h1>
-  <p data-i18n="hero_sub">I build software and embedded systems. Explore projects below.</p>
-        <p class="actions">
-          <a class="btn" href="#projects" data-i18n="btn_view_projects">View projects</a>
-          <a class="btn ghost" href="#contact" data-i18n="btn_contact">Contact</a>
-        </p>
+        <div class="hero-left">
+          <img src="assets/images/profile_pic.jpg" alt="Leonardo Benvinda" class="hero-pic" />
+        </div>
+        <div class="hero-right">
+          <h1 data-i18n="hero_title">Hi — I'm Leonardo Benvinda, Computer Engineer</h1>
+          <p data-i18n="hero_sub">I build software and embedded systems. Explore projects below.</p>
+          <p class="actions">
+            <a class="btn" href="#projects" data-i18n="btn_view_projects">View projects</a>
+            <a class="btn" href="#contact" data-i18n="btn_contact">Contact</a>
+          </p>
+          <p class="cv-links">
+            <a class="btn" href="assets/files/leonardo_benvinda_cv_en.pdf" download="leonardo_benvinda_cv_en.pdf" target="_blank" rel="noopener noreferrer" data-i18n="btn_cv_en">Download CV (EN)</a>
+            <a class="btn" href="assets/files/leonardo_benvinda_cv_pt.pdf" download="leonardo_benvinda_cv_pt.pdf" target="_blank" rel="noopener noreferrer" data-i18n="btn_cv_pt">Download CV (PT)</a>
+          </p>
+        </div>
       </div>
     </section>
 
@@ -44,8 +55,7 @@
       <h2 data-i18n="about_title">About</h2>
       <p data-i18n="about_text">I recently graduated in Computer Engineering. My work covers web development, embedded systems and data projects. I value clean code, good architecture and practical results.</p>
       <ul class="skills">
-        <li>Java / JavaFX</li>
-        <li>Python / Django / Flask</li>
+        <p>C#/ASP.NET Java Python / Django / Flask PHP / Laravel / Angular REST API C/C++ Arduino / Raspberry Pi Machine Learning</p>
       </ul>
     </section>
 

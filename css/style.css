@@ -27,6 +27,10 @@ body{margin:0;background:linear-gradient(180deg,#071024 0%, #0a0f1f 100%);color:
 
 /* Header */
 .site-header{position:sticky;top:0;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(7,16,36,0.6), rgba(7,16,36,0.3));border-bottom:1px solid rgba(255,255,255,0.03)}
+.site-header{transition:transform .28s ease, opacity .2s ease}
+
+/* When the header is moved out to avoid overlapping the hero profile image */
+.site-header.hidden-by-pic{transform:translateY(-100%);opacity:0;pointer-events:none}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem}
 .brand{font-family:'JetBrains Mono', monospace;font-weight:700;color:var(--accent)}
 .nav-links{list-style:none;display:flex;gap:1rem;align-items:center;margin:0;padding:0}
@@ -44,8 +48,62 @@ body{margin:0;background:linear-gradient(180deg,#071024 0%, #0a0f1f 100%);color:
 .hero p{color:var(--muted);margin:0 0 1.2rem}
 .hero{background: linear-gradient(var(--gradient-angle), rgba(0,0,0,0.05), rgba(255,255,255,0.01));}
 .actions{margin-top:1rem}
-.btn{display:inline-block;padding:0.65rem 1rem;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041018;text-decoration:none;font-weight:600;margin-right:0.6rem}
-.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+/* Tighter spacing between hero action row and CV buttons */
+.hero .actions{margin-bottom:0}
+.hero .cv-links{margin-top:0.4rem}
+@media (max-width:900px){
+  .hero .cv-links{margin-top:0.4rem}
+}
+.btn{display:inline-block;padding:0.65rem 1rem;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));color:#041018;text-decoration:none;font-weight:600;margin-right:0.6rem}
+.btn.ghost{background-image: linear-gradient(var(--card), var(--card)), linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));background-origin: padding-box, border-box;background-clip: padding-box, border-box;border:2px solid transparent;color:#041018}
+
+/* Invert gradient only for the Projects button and the English CV download button */
+a.btn[data-i18n="btn_view_projects"], a.btn[data-i18n="btn_cv_en"]{
+  background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent));
+  color: #041018;
+}
+
+/* Hero-specific single-color buttons (override gradients) */
+.hero .btn[data-i18n="btn_view_projects"]{
+  background: linear-gradient(90deg, var(--accent3) 0%, #9effc6 85%);
+  color:#041018;
+  transition:background .22s ease, transform .16s ease, box-shadow .16s ease;
+}
+.hero .btn[data-i18n="btn_contact"]{
+  background: linear-gradient(90deg, var(--accent) 0%, #4ef0ff 85%);
+  color:#041018;
+  transition:background .22s ease, transform .16s ease, box-shadow .16s ease;
+}
+.hero .btn[data-i18n="btn_cv_en"]{
+  background: linear-gradient(90deg, var(--warm) 0%, #fff1a8 85%);
+  color:#041018;
+  transition:background .22s ease, transform .16s ease, box-shadow .16s ease;
+}
+.hero .btn[data-i18n="btn_cv_pt"]{
+  background: linear-gradient(90deg, var(--accent2) 0%, #ff68a6 85%);
+  color:#041018;
+  transition:background .22s ease, transform .16s ease, box-shadow .16s ease;
+}
+
+/* Hover: reverse gradient stops for subtle motion (accentuated) */
+.hero .btn[data-i18n="btn_view_projects"]:hover{ background: linear-gradient(90deg, #9effc6 0%, var(--accent3) 85%); }
+.hero .btn[data-i18n="btn_contact"]:hover{ background: linear-gradient(90deg, #4ef0ff 0%, var(--accent) 85%); }
+.hero .btn[data-i18n="btn_cv_en"]:hover{ background: linear-gradient(90deg, #fff1a8 0%, var(--warm) 85%); }
+.hero .btn[data-i18n="btn_cv_pt"]:hover{ background: linear-gradient(90deg, #ff68a6 0%, var(--accent2) 85%); }
+
+/* CV download links in hero */
+.cv-links{margin-top:0.9rem;display:flex;gap:0.6rem;flex-wrap:wrap}
+.cv-links .btn{padding:0.55rem 0.9rem;font-weight:700}
+.cv-links .btn.ghost{background-image: linear-gradient(var(--card), var(--card)), linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));background-origin: padding-box, border-box;background-clip: padding-box, border-box;border:2px solid transparent;color:#041018}
+
+/* Center and color CV buttons on narrow screens */
+@media (max-width:900px){
+  .cv-links{justify-content:center}
+  .cv-links .btn{flex:0 0 auto}
+  /* ensure both buttons use the accent gradient on mobile */
+  .cv-links .btn{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041018;border-color:transparent}
+}
 
 /* Animated accent underline for nav links */
 .nav-links a{position:relative}
@@ -65,7 +123,22 @@ body{margin:0;background:linear-gradient(180deg,#071024 0%, #0a0f1f 100%);color:
 @keyframes iconIn{to{opacity:1;transform:none}}
 
 /* Hero image */
-.hero-image{position:absolute;right:3rem;bottom:1rem;width:220px;height:auto;opacity:0.95;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:3}
+.hero-image{position:absolute;right:3rem;bottom:1rem;width:220px;height:auto;opacity:0.95;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:3;border:2px solid transparent;padding:4px;background-image: linear-gradient(var(--card), var(--card)), linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));background-origin: padding-box, border-box;background-clip: padding-box, border-box}
+
+/* Profile image in the hero (actual markup uses .hero-pic) */
+.hero-left .hero-pic, .hero-pic{
+  display:block;
+  width:220px;
+  height:auto;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  border:2px solid transparent;
+  padding:4px; /* space so the gradient border is visible */
+  background-image: linear-gradient(var(--card), var(--card)), linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  object-fit:contain;
+}
 
 /* Circuit background */
 .circuit-bg{position:absolute;inset:0;z-index:1;opacity:0.12;background-image:radial-gradient(circle at 10% 10%, rgba(0,229,255,0.06), transparent 10%), linear-gradient(180deg, rgba(255,0,122,0.02), transparent 40%);}
@@ -112,6 +185,9 @@ h2{font-family:'JetBrains Mono', monospace;font-size:1.3rem;color:#dffaff;margin
 /* gradient underline for section titles */
 h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));transform-origin:left;transform:scaleX(1)}
 .skills{display:flex;gap:1rem;list-style:none;padding:0;margin-top:1rem;color:var(--muted)}
+
+/* Keep skills lists left-aligned (avoid global justification) */
+#about .skills, #about .skills li{ text-align:left; }
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
 .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1.25rem;border-radius:10px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
 
@@ -143,6 +219,28 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .acc-thumb{width:64px;height:48px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,0.04)}
 .acc-right{flex:1}
 .acc-details{color:#dfeff3;line-height:1.5;margin-top:0.35rem}
+
+/* Desktop-only small open indicator button inside project headers */
+.accordion-open-btn{
+  display:none;
+  margin-left:0.75rem;
+  width:48px;
+  height:48px;
+  padding:0;
+  border-radius:8px;
+  font-size:0.85rem;
+  font-weight:700;
+  cursor:pointer;
+  background: transparent; /* no background: only the chevron is visible */
+  color:inherit;
+  border:0;
+  align-items:center;justify-content:center;display:inline-flex
+}
+@media (min-width:900px){
+  .accordion-open-btn{display:inline-flex}
+}
+.accordion-open-btn svg{width:28px;height:28px;display:block;transition:transform .18s ease;transform-origin:center}
+.accordion-item.open .accordion-open-btn svg{transform:rotate(180deg)}
 
 /* When a project uses inline details (gallery/video) hide the left preview and expand the right column */
 .accordion-item.no-preview .acc-left{display:none}
@@ -223,6 +321,28 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .slideshow-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.06);border:0;cursor:pointer}
 .slideshow-dot.active{background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 6px 16px rgba(0,0,0,0.45)}
 
+/* Lightbox styles for project images */
+.image-lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:9999}
+.image-lightbox.open{display:flex}
+.image-lightbox .lb-backdrop{position:absolute;inset:0;background:rgba(2,6,23,0.8)}
+.image-lightbox .lb-inner{position:relative;z-index:2;max-width:96vw;max-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0.6rem;box-sizing:border-box}
+.image-lightbox .lb-img{max-width:100%;max-height:88vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.7);display:block;margin:0 auto}
+.image-lightbox .lb-caption{color:var(--muted);text-align:center;margin-top:0.6rem;font-size:0.95rem}
+.image-lightbox .lb-close,.image-lightbox .lb-prev,.image-lightbox .lb-next{position:absolute;background:rgba(0,0,0,0.45);color:#fff;border:0;padding:0.4rem 0.6rem;border-radius:6px;cursor:pointer}
+.image-lightbox .lb-close{right:-6px;top:-6px;font-size:1.2rem}
+.image-lightbox .lb-prev{left:6px;top:50%;transform:translateY(-50%);font-size:1.6rem}
+.image-lightbox .lb-next{right:6px;top:50%;transform:translateY(-50%);font-size:1.6rem}
+.image-lightbox .lb-prev:hover,.image-lightbox .lb-next:hover,.image-lightbox .lb-close:hover{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+@media (max-width:600px){
+  .image-lightbox .lb-prev,.image-lightbox .lb-next{display:none}
+  .image-lightbox .lb-close{right:8px;top:8px}
+}
+
+/* Ensure project/detail images never overflow their container */
+.project-img, .detail-html img, .slideshow-main, .project-card img, .acc-main{max-width:100%;height:auto;display:block}
+.acc-details figure{max-width:100%;overflow:hidden}
+
 @media (max-width:900px){
   .slideshow-stage{padding-top:56.25%;}
   .slideshow-prev,.slideshow-next{padding:0.45rem 0.6rem;font-size:1.1rem}
@@ -241,6 +361,59 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .pm-footer button{appearance:none;border:0;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041018;padding:0.45rem 0.7rem;border-radius:8px;font-weight:700;cursor:pointer}
 .pm-footer button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.05);color:var(--muted)}
 
+/* Hero layout: profile image left of title/description */
+.hero-content{display:flex;align-items:center;gap:1.25rem}
+.hero-left{flex:0 0 auto}
+.hero-right{flex:1}
+.hero-pic{width:160px;height:160px;object-fit:cover;border-radius:12px;border:2px solid rgba(255,255,255,0.04);box-shadow:0 6px 18px rgba(2,6,23,0.35)}
+
+@media (max-width:900px){
+  .hero-content{flex-direction:column;align-items:center;text-align:center}
+  .hero-left{margin-bottom:0.75rem}
+  .hero-pic{width:120px;height:120px}
+  .hero-right h1, .hero-right p{ text-align:center }
+}
+
+/* Hero actions and CV links: use flex+gap to keep consistent spacing on small screens */
+@media (max-width:900px){
+  .hero .actions{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:1rem}
+  .hero .actions .btn{margin-right:0}
+  .hero .cv-links{display:flex;gap:0.6rem;justify-content:center}
+  .hero .cv-links .btn{margin-right:0}
+}
+
+/* Make hero buttons uniform on desktop but allow them to stretch to the hero-right width */
+@media (min-width:900px){
+  .hero .actions{display:flex;gap:0.6rem;align-items:center}
+  .hero .cv-links{display:flex;gap:0.6rem;align-items:center}
+  .hero .actions .btn,
+  .hero .cv-links .btn{
+    flex:1 1 0; /* allow buttons to grow and share available width */
+    min-width:140px; /* keep a sensible minimum */
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+
+/* On very small screens allow buttons to stretch full width for easier tapping */
+@media (max-width:480px){
+  .hero .actions{flex-direction:column}
+  .hero .cv-links{flex-direction:column}
+  .hero .actions .btn,
+  .hero .cv-links .btn{width:100%;min-width:0}
+}
+
+/* Global text justification */
+/* Apply justified text broadly but keep interactive elements and monospaced headings readable */
+body{word-break:break-word;text-align:justify;text-justify:inter-word}
+/* Ensure headings are also justified if desired */
+h1,h2,h3,h4,h5,h6{text-align:justify}
+/* Keep buttons, tabs and code blocks left/center aligned for readability */
+button, .btn, input, select, textarea, .tab{ text-align:center }
+pre, code, kbd, samp{ text-align:left; white-space:pre-wrap }
+
 @media (max-width:900px){
   .pm-body{flex-direction:column}
   .pm-left img{height:220px}
@@ -255,6 +428,24 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 .projects-category h3{font-size:1.1rem;margin:0 0 0.6rem;color:#cfeff6;font-family:'JetBrains Mono', monospace;position:relative;display:inline-block;padding-bottom:0.5rem}
 .projects-category h3::after{content:'';position:absolute;left:0;bottom:0;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));width:100%}
 .projects-category .grid{margin-top:0.6rem}
+
+/* Tabbed projects */
+.project-tabs{padding:1rem}
+.tab-list{display:inline-flex;gap:1.2rem;margin:0 auto 1.2rem;position:relative;padding-bottom:0.6rem;align-items:center}
+/* Gradient underline sized to the tabs' combined width */
+.tab-list::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--accent2),var(--accent));opacity:0.95}
+.tab{background:transparent;border:0;padding:0.15rem 0.25rem;cursor:pointer;color:var(--muted);font-family:'JetBrains Mono', monospace;font-size:1rem}
+.tab.active{color:var(--accent);font-weight:700}
+.tab:focus{outline:2px solid rgba(0,229,255,0.12);outline-offset:3px}
+
+/* Profile picture in header */
+.brand{display:flex;align-items:center;gap:0.75rem}
+.brand .profile-pic{width:56px;height:56px;object-fit:cover;border-radius:999px;display:block;border:2px solid rgba(255,255,255,0.04)}
+.brand .brand-name{font-weight:700}
+.tab-panels{display:block}
+.tab-panel{display:block}
+/* Ensure panels with the `hidden` attribute are not shown (override default display rules) */
+.tab-panel[hidden]{display:none !important}
 
 /* Education section */
 .education-list{display:flex;flex-direction:column;gap:1rem}
@@ -297,16 +488,18 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
 /* ensure items can wrap to next row instead of causing horizontal scroll */
 .contact .contact-item{max-width:100%;box-sizing:border-box}
   .contact .contact-icon{display:inline-flex;width:var(--contact-size);height:var(--contact-size);align-items:center;justify-content:center;border-radius:10px;padding:10px;text-decoration:none;flex:0 0 var(--contact-size);
-  /* stronger, more visible tinted background so icons are clearly visible on dark themes */
-  background: linear-gradient(90deg, rgb(0, 229, 255), rgb(255, 0, 123));
-  border:1px solid rgba(255,255,255,0.08);
+  /* use a single light-blue background (no gradient) for contact buttons */
+  background: var(--accent);
+  color: #041018; /* dark foreground for icons that use currentColor */
+  border: none;
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 .contact .contact-icon img{width:var(--contact-icon-size);height:var(--contact-icon-size);object-fit:contain;display:block}
+.contact .contact-icon svg{width:var(--contact-icon-size);height:var(--contact-icon-size);fill:currentColor;display:block}
 .contact .contact-graphic{width:var(--contact-icon-size);height:var(--contact-icon-size);display:block;background-repeat:no-repeat;background-position:center;background-size:contain}
 .contact .contact-icon:hover,
 .contact .contact-icon:focus{
-  background: linear-gradient(90deg,var(--accent),var(--accent2));
+  background: var(--accent);
   color: #041018;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 10px 24px rgba(0,0,0,0.55);
@@ -335,6 +528,8 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
   .nav-links{flex-direction:column;align-items:flex-start;gap:0.6rem}
   .nav-links a{font-size:1.05rem}
   .lang-switch{margin-top:0.2rem}
+  /* Make header opaque and visually separated on narrow screens to avoid overlay issues */
+  .site-header{background:linear-gradient(180deg, rgba(7,16,36,0.98), rgba(7,16,36,0.98));backdrop-filter:none;box-shadow:0 8px 24px rgba(2,6,23,0.6);border-bottom:1px solid rgba(255,255,255,0.04);z-index:999}
 }
 
 /* General mobile adjustments */
@@ -348,7 +543,36 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
   .btn{padding:0.6rem 0.9rem}
   .card{padding:0.8rem}
   .grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-  .edu-logo, .pos-logo{flex:0 0 88px;width:88px}
+  .edu-logo, .pos-logo{flex:0 0 72px;width:72px}
+
+  /* Mobile: prefer left-aligned text for readability on narrow viewports (global) */
+  body, h1, h2, h3, h4, h5, h6, .section, .card, .project-accordion, .project-card, .pm-right, .pm-body, .acc-details {
+    text-align: left;
+    text-justify: auto;
+  }
+
+  /* Hero: keep the hero visually centered on small screens (override global left-align) */
+  .hero-content{align-items:center;text-align:center}
+  .hero-right h1, .hero-right p{ text-align:center }
+}
+
+/* Further compact the projects accordion for narrow phones */
+@media (max-width:600px){
+  .accordion-header{padding:0.55rem 0.75rem;gap:0.5rem}
+  .accordion-title h3{font-size:0.98rem}
+  .accordion-title .summary-short{font-size:0.82rem;color:var(--muted);margin-top:0.18rem}
+  .accordion-toggle{min-width:36px;font-size:1rem;padding:0.22rem 0.35rem}
+  .accordion-body{padding:0.6rem 0.75rem;gap:0.6rem}
+  .acc-main{height:140px}
+  .acc-left{max-height:160px}
+  .acc-thumbs{display:none}
+  .acc-details{font-size:0.95rem}
+  /* make skill chips smaller and wrap tighter */
+  .project-skills li, .header-skills li{font-size:0.72rem;padding:0.18rem 0.45rem}
+  /* clamp the summary line in headers to avoid very tall headers */
+  .accordion-title .summary-short{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  /* reduce card padding so stacked content doesn't look square */
+  .project-card{padding:0.85rem}
 }
 
 /* focus-visible for keyboard users on contact icons */
@@ -363,4 +587,34 @@ h2::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border
   .hero-image{display:none}
   .nav-links{gap:0.6rem}
   .hero h1{font-size:1.6rem}
+}
+
+/* Make projects take more horizontal space on narrow screens (near full-bleed) */
+@media (max-width:900px){
+  #projects .project-tabs{box-sizing:border-box;width:calc(100% + (var(--container-padding-inline) * 2));margin-left:calc(-1 * var(--container-padding-inline));padding-left:calc(var(--container-padding-inline) + env(safe-area-inset-left));padding-right:calc(var(--container-padding-inline) + env(safe-area-inset-right));}
+  /* reduce gaps inside accordion and let cards use available width */
+  #projects .project-accordion{gap:0.5rem;margin-top:0.6rem}
+  #projects .project-card{width:100%;margin:0;border-radius:8px;padding:0.75rem}
+  /* make tabs more compact so labels fit on a single line */
+  .tab-list{gap:0.6rem;white-space:nowrap}
+  .tab{font-size:0.88rem;padding:0.08rem 0.18rem}
+}
+
+/* Responsive: make education and positions logos stack on top of text on narrow screens */
+@media (max-width:900px){
+  .edu-item, .pos-item{flex-direction:column;align-items:flex-start}
+  .edu-logo-wrap, .pos-logo-wrap{flex:0 0 auto;width:100%;max-width:100%}
+  /* slightly smaller education/position images on mobile, centered with a reasonable max width */
+  .edu-logo, .pos-logo{width:72%;max-width:220px;height:auto;object-fit:contain;border-radius:8px;margin:0 auto 0.6rem;display:block}
+  .edu-right, .pos-right{padding-left:0}
+  .edu-right::before, .pos-right::before{display:none}
+}
+
+/* Desktop: slightly larger project tab labels for readability */
+@media (min-width:900px){
+  .project-tabs .tab-list .tab,
+  .tab-list .tab{
+    font-size:1.05rem; /* slightly larger on desktop */
+    padding:0.6rem 0.9rem;
+  }
 }

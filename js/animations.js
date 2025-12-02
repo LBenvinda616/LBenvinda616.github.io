@@ -28,4 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
     a.classList.add('contact-press');
     setTimeout(()=> a.classList.remove('contact-press'), 260);
   });
+
+  // Hide header when it would overlap the hero profile picture
+  (function(){
+    const header = document.querySelector('.site-header');
+    const heroPic = document.querySelector('.hero-pic');
+    if(!header || !heroPic) return;
+
+    let ticking = false;
+    function update(){
+      ticking = false;
+      const hRect = header.getBoundingClientRect();
+      const pRect = heroPic.getBoundingClientRect();
+      // if header's bottom is below the top of the hero pic, it would overlap
+      const overlap = hRect.bottom > pRect.top + 2; // 2px small buffer
+      header.classList.toggle('hidden-by-pic', overlap);
+    }
+
+    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    // initial check
+    update();
+  })();
 });

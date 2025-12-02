@@ -25,7 +25,7 @@
       { "type": "gallery", "images": ["assets/images/projects/project_2/homepage.png", "assets/images/projects/project_2/homepage_phone_nav.png","assets/images/projects/project_2/beer_search.png", "assets/images/projects/project_2/beer.png", "assets/images/projects/project_2/mypage.png"], "alt": "Project 2 screenshots" }
     ],
     "category": "academic",
-    "skills": ["PHP", "Laravel", "React.js", "MySQL", "REST APIs", "Web Development"]
+    "skills": ["PHP", "Laravel", "React.js", "MySQL", "REST APIs", "Web Development", "HTML/CSS"]
   },
   {
     "id": "project_6",
@@ -83,6 +83,44 @@
       { "type": "p", "text_key": "project_5_details_4" }
     ],
     "category": "academic",
-    "skills": ["Arduino", "C/C++", "HTTP Requests", "IoT"]
+    "skills": ["Java", "JavaFX", "Object-Oriented Programming", "MVC"]
+  },
+  {
+    "id": "project_7",
+    "title_key": "project_7_title",
+    "summary_key": "project_7_desc",
+    "details": [
+      { "type": "p", "text_key": "project_7_details" },
+      { "type": "p", "text_key": "project_7_details_2" },
+      { "type": "p", "text_key": "project_7_details_3" },
+      { "type": "p", "text_key": "project_7_details_4" },
+      { "type": "p", "text_key": "project_7_details_5" }
+    ],
+    "category": "professional",
+    "skills": ["C#", ".NET", "Object-Oriented Programming"]
+  },
+  {
+    "id": "project_8",
+    "title_key": "project_8_title",
+    "summary_key": "project_8_desc",
+    "details": [
+      { "type": "p", "text_key": "project_8_details" },
+      { "type": "p", "text_key": "project_8_details_2" },
+      { "type": "p", "text_key": "project_8_details_3" }
+    ],
+    "category": "personal",
+    "skills": ["C#", ".NET", "Object-Oriented Programming"]
+  },
+  {
+    "id": "project_9",
+    "title_key": "project_9_title",
+    "summary_key": "project_9_desc",
+    "details": [
+      { "type": "p", "text_key": "project_9_details" },
+      { "type": "p", "text_key": "project_9_details_2" },
+      { "type": "p", "text_key": "project_9_details_3" }
+    ],
+    "category": "personal",
+    "skills": ["C#", ".NET", "Object-Oriented Programming"]
   }
 ]

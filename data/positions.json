@@ -6,7 +6,12 @@
     "years_key": "pos_1_years",
     "desc_key": "pos_1_desc",
     "image": "assets/images/positions/Etla-Logo-1.png",
-    "skills": ["PHP", "Laravel", "MySQL", "REST APIs"]
+    "skills": [
+      { "key": "pos_1_skill_csharp" },
+      { "key": "pos_1_skill_vbnet" },
+      { "key": "pos_1_skill_sql" },
+      { "key": "pos_1_skill_hardware_troubleshooting" }
+    ]
   },
   {
     "id": "pos_2",
@@ -15,6 +20,12 @@
     "years_key": "pos_2_years",
     "desc_key": "pos_2_desc",
     "image": "assets/images/positions/badaloca.jpg",
-    "skills": ["Customer support", "Sales", "POS systems"]
+    "skills": [
+      { "key": "pos_2_skill_leadership" },
+      { "key": "pos_2_skill_communication" },
+      { "key": "pos_2_skill_problem_solving" },
+      { "key": "pos_2_skill_team_work" },
+      { "key": "pos_2_skill_sense_of_responsibility" }
+    ]
   }
 ]
