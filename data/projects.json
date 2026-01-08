@@ -106,10 +106,15 @@
     "details": [
       { "type": "p", "text_key": "project_8_details" },
       { "type": "p", "text_key": "project_8_details_2" },
-      { "type": "p", "text_key": "project_8_details_3" }
+      { "type": "p", "text_key": "project_8_details_3" },
+      { "type": "img", "src": "assets/images/projects/project_8/balancometro_1.png", "alt": "Projecr 8 screenshot" },
+      { "type": "p", "text_key": "project_8_details_4" },
+      { "type": "p", "text_key": "project_8_details_5" },
+      { "type": "img", "src": "assets/images/projects/project_8/balancometro_2_demo.gif", "alt": "Projecr 8 screenshot" },
+      { "type": "p", "text_key": "project_8_details_6" }
     ],
     "category": "personal",
-    "skills": ["C#", ".NET", "Object-Oriented Programming"]
+    "skills": ["C#", ".NET", "Object-Oriented Programming", "Rust", "Tauri", "Svelte"]
   },
   {
     "id": "project_9",
@@ -122,5 +127,23 @@
     ],
     "category": "personal",
     "skills": ["C#", ".NET", "Object-Oriented Programming"]
+  },
+  {
+    "id": "project_10",
+    "title_key": "project_10_title",
+    "summary_key": "project_10_desc",
+    "details": [
+      { "type": "p", "text_key": "project_10_details" },
+      { "type": "p", "text_key": "project_10_details_2" },
+      { "type": "p", "text_key": "project_10_details_3" },
+      { "type": "p", "text_key": "project_10_details_4" },
+      
+      { "type": "img", "src": "assets/images/projects/project_10/dit.png", "alt": "Projecr 10 screenshot" },
+      { "type": "p", "text_key": "project_10_details_5" },
+      { "type": "p", "text_key": "project_10_details_6" }
+      
+    ],
+    "category": "personal",
+    "skills": ["AI", "DevOps", "Docker", "AWS", "HuggingFace API", "Web Development", "HTML/CSS", "React.js", "node.js"]
   }
 ]
